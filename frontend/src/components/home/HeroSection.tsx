@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -15,16 +16,30 @@ export function HeroSection() {
         <h1 className="font-display text-[clamp(3rem,7vw,5.75rem)] leading-[0.93] tracking-[-0.05em] max-w-[12ch] text-foreground font-bold">
           Your Fast Track to Global Opportunities
         </h1>
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="text-sm font-bold uppercase tracking-[0.12em] text-muted-foreground">Trusted by</span>
+          <div className="flex flex-wrap gap-2.5">
+            <span className="inline-flex items-center rounded-full border border-border bg-background px-3 py-1 text-sm font-semibold text-foreground/90">
+              ICEF
+            </span>
+            <span className="inline-flex items-center rounded-full border border-border bg-background px-3 py-1 text-sm font-semibold text-foreground/90">
+              British Council
+            </span>
+            <span className="inline-flex items-center rounded-full border border-border bg-background px-3 py-1 text-sm font-semibold text-foreground/90">
+              RCIC
+            </span>
+          </div>
+        </div>
         <p className="text-[clamp(1.25rem,2.1vw,2.05rem)] leading-[1.18] text-muted-foreground max-w-[25ch]">
           Secure your future with expert guidance on visa applications, top university placements, and international career growth.
         </p>
         <div className="flex flex-wrap gap-3.5">
-          <button className="rounded-[18px] px-6 py-2.5 text-base font-semibold transition-all duration-200 ease-in-out bg-indigo-600 text-white shadow-[0_10px_20px_-12px_rgba(67,56,202,0.9)] hover:bg-indigo-700">
+          <Link href="/book-appointment" className="rounded-[18px] px-6 py-2.5 text-base font-semibold transition-all duration-200 ease-in-out bg-primary text-primary-foreground shadow-sm hover:bg-primary/90">
             Get Free Assessment
-          </button>
-          <button className="rounded-[18px] px-6 py-2.5 text-base font-semibold transition-all duration-200 ease-in-out bg-background text-foreground border border-border hover:border-indigo-200 hover:text-indigo-600">
+          </Link>
+          <Link href="/study-destinations" className="rounded-[18px] px-6 py-2.5 text-base font-semibold transition-all duration-200 ease-in-out bg-background text-foreground border border-border hover:border-border/80 hover:text-primary">
             View Destinations
-          </button>
+          </Link>
         </div>
       </motion.div>
 
@@ -39,6 +54,7 @@ export function HeroSection() {
           alt="Student standing confidently on an international university campus"
           fill
           priority
+          sizes="(max-width: 1024px) 100vw, 45vw"
           className="object-cover object-center"
         />
       </motion.div>

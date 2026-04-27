@@ -1,5 +1,4 @@
 import { HeroSection } from "./HeroSection";
-import { HomeNavbar } from "./HomeNavbar";
 import { StatsStrip } from "./StatsStrip";
 
 export function HomeHero() {
@@ -10,8 +9,7 @@ export function HomeHero() {
         <div className="absolute right-0 top-1/3 h-80 w-80 rounded-full bg-indigo-100/70 blur-3xl" />
       </div>
 
-      <div className="w-full max-w-[1360px] mx-auto px-6 md:px-10 lg:px-12 relative">
-        <HomeNavbar />
+      <div className="w-full max-w-[1360px] mx-auto px-6 md:px-10 lg:px-12 relative pt-6 md:pt-10">
         <HeroSection />
         <StatsStrip />
       </div>
