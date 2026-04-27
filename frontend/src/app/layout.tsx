@@ -1,6 +1,9 @@
-import { Manrope, Sora } from "next/font/google";
+import { Manrope, Sora, Geist } from "next/font/google";
 import "./globals.css";
 import type { Metadata } from "next";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -19,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${sora.variable}`}>
+    <html lang="en" className={cn(manrope.variable, sora.variable, "font-sans", geist.variable)}>
       <body>{children}</body>
     </html>
   );
