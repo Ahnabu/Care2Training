@@ -1,0 +1,28 @@
+{
+  "site": {
+    "name": "Care2 Training",
+    "tagline": "Study abroad guidance",
+    "cta": {
+      "bookAppointment": "Book appointment"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "studyDestinations": "Study Destinations",
+    "services": "Services",
+    "events": "Events",
+    "blogs": "Blogs",
+    "contact": "Contact"
+  },
+  "language": {
+    "label": "Language",
+    "english": "English",
+    "bangla": "Bangla"
+  },
+  "leadForm": {
+    "title": "Get Expert Advice for Your Future Abroad",
+    "subtitle": "A short, step-by-step form designed to be easy to finish."
+  }
+}
+

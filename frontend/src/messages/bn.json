@@ -1,0 +1,28 @@
+{
+  "site": {
+    "name": "Care2 Training",
+    "tagline": "বিদেশে পড়াশোনার গাইডেন্স",
+    "cta": {
+      "bookAppointment": "অ্যাপয়েন্টমেন্ট বুক করুন"
+    }
+  },
+  "nav": {
+    "home": "হোম",
+    "about": "আমাদের সম্পর্কে",
+    "studyDestinations": "স্টাডি ডেস্টিনেশন",
+    "services": "সেবা",
+    "events": "ইভেন্টস",
+    "blogs": "ব্লগ",
+    "contact": "যোগাযোগ"
+  },
+  "language": {
+    "label": "ভাষা",
+    "english": "English",
+    "bangla": "বাংলা"
+  },
+  "leadForm": {
+    "title": "আপনার ভবিষ্যৎ বিদেশে পড়াশোনার জন্য এক্সপার্ট পরামর্শ নিন",
+    "subtitle": "সহজে শেষ করা যায় এমন ধাপে ধাপে ফর্ম।"
+  }
+}
+
