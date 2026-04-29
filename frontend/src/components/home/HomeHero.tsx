@@ -5,8 +5,13 @@ import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
 import { CTABand } from "@/components/sections/CTABand";
+import { PartnersSection } from "@/components/sections/PartnersSection";
 
-export function HomeHero() {
+export function HomeHero({
+  locale = "en",
+}: Readonly<{
+  locale?: string;
+}>) {
   return (
     <main className="bg-background text-foreground relative min-h-screen overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
@@ -17,6 +22,7 @@ export function HomeHero() {
       <div className="w-full max-w-[1360px] mx-auto px-6 md:px-10 lg:px-12 relative pt-6 md:pt-10">
         <HeroSection />
         <StatsStrip />
+        <PartnersSection locale={locale} />
         <ServicesBentoGrid />
         <ProcessSteps />
         <TestimonialsSection />
