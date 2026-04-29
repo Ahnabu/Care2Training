@@ -6,6 +6,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -22,7 +23,6 @@ export function SiteHeader() {
 
   const nav = useMemo(
     () => [
-      { label: t("nav.home"), href: "/" },
       { label: t("nav.about"), href: "/about" },
       { label: t("nav.studyDestinations"), href: "/study-destinations" },
       { label: t("nav.services"), href: "/services" },
@@ -51,8 +51,15 @@ export function SiteHeader() {
       <div className="mx-auto w-full max-w-[1360px] px-6 md:px-10 lg:px-12">
         <div className="flex items-center justify-between gap-4 py-3.5">
           <Link href={hrefWithLocale("/")} className="inline-flex items-center gap-3">
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground font-extrabold tracking-[-0.04em]">
-              C2
+            <span className="relative h-12 w-12 md:h-13 md:w-13 overflow-hidden rounded-2xl border border-border bg-background shadow-sm">
+              <Image
+                src="/care2training/assets/logo2.jpeg"
+                alt="Care2 Training"
+                fill
+                sizes="(max-width: 768px) 48px, 52px"
+                className="object-contain scale-[1.08] contrast-125 saturate-110"
+                priority
+              />
             </span>
             <span className="grid leading-tight">
               <span className="font-display text-[1.02rem] font-bold tracking-[-0.02em]">{t("site.name")}</span>
