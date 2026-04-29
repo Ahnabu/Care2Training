@@ -42,5 +42,6 @@
 ## Anti-patterns to avoid
 - New random spacing in each section (magic numbers everywhere)
 - Multiple blues competing for “primary”
+- Duplicate copy / repeated brand/contact text scattered across pages (centralize in `frontend/src/content/*`)
 - Motion on everything (keep it purposeful)
 

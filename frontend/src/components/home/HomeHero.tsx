@@ -1,5 +1,10 @@
 import { HeroSection } from "./HeroSection";
 import { StatsStrip } from "./StatsStrip";
+import { ServicesBentoGrid } from "@/components/sections/ServicesBentoGrid";
+import { ProcessSteps } from "@/components/sections/ProcessSteps";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { FAQAccordion } from "@/components/sections/FAQAccordion";
+import { CTABand } from "@/components/sections/CTABand";
 
 export function HomeHero() {
   return (
@@ -12,6 +17,11 @@ export function HomeHero() {
       <div className="w-full max-w-[1360px] mx-auto px-6 md:px-10 lg:px-12 relative pt-6 md:pt-10">
         <HeroSection />
         <StatsStrip />
+        <ServicesBentoGrid />
+        <ProcessSteps />
+        <TestimonialsSection />
+        <FAQAccordion />
+        <CTABand />
       </div>
     </main>
   );

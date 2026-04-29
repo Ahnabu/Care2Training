@@ -28,6 +28,10 @@
 - Testimonials
 - FAQ accordion
 - CTA band
+  
+## Reusability requirements
+- Prefer props-driven sections (accept `className` and option props rather than hard-coding layout assumptions)
+- Avoid embedding page-specific marketing copy in multiple components; use `frontend/src/content/*` data modules
 
 ## Page templates
 - List page template (filters + grid + pagination placeholder)

@@ -23,9 +23,17 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      <a
+        href="#content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-xl focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:border focus:border-border"
+      >
+        Skip to content
+      </a>
       <SiteHeader />
       <AutoLeadCaptureModal />
-      {children}
+      <div id="content" tabIndex={-1}>
+        {children}
+      </div>
       <SiteFooter />
     </NextIntlClientProvider>
   );

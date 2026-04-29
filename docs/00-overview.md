@@ -15,6 +15,7 @@ Refresh the public website UI so it looks modern, trustworthy, and international
 
 ## Success checklist
 - Consistent design tokens (colors/type/spacing/radius/shadows)
+- Codebase maintainability: reuse components + move duplicated marketing copy into `frontend/src/content/*` TS data modules
 - Fully responsive (360 → 1440+)
 - Accessible baseline (keyboard nav, focus states, contrast, labels)
 - Performance basics (image `sizes`, sane motion usage, stable layout)

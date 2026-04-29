@@ -13,6 +13,8 @@ Implement one page end-to-end using existing tokens and reusable sections.
 - Accessible: headings, focus, labels
 - Uses shared `SiteHeader` and `SiteFooter`
 - Reuses section components where possible
+- Enforces design/color consistency via tokens and existing layout primitives (no random gradients/hex colors)
+- Avoids duplicated marketing copy: if text is used in 2+ places, move it into `frontend/src/content/` (or `frontend/src/lib/`) and import
 
 ## What to do
 1. Create the route under `frontend/src/app/.../page.tsx`.
@@ -24,4 +26,5 @@ Implement one page end-to-end using existing tokens and reusable sections.
 - No console errors
 - Looks good on mobile/tablet/desktop
 - No hard-coded hex colors unless justified
+- Component reuse: prefer composing reusable sections over new page-specific one-offs
 

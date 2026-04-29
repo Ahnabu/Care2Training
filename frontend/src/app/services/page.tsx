@@ -1,36 +1,37 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { FAQAccordion } from "@/components/sections/FAQAccordion";
+import { ProcessSteps } from "@/components/sections/ProcessSteps";
+import { ServicesBentoGrid } from "@/components/sections/ServicesBentoGrid";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { CTABand } from "@/components/sections/CTABand";
+import { TrustBar } from "@/components/sections/TrustBar";
+import { OfficesMini } from "@/components/sections/OfficesMini";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 export const metadata: Metadata = {
   title: "Services | Care2 Training",
   description: "Explore our services for admissions, visas, and study abroad success.",
 };
 
-const services = [
-  { slug: "admission-guidance", name: "Admission Guidance", blurb: "Program selection, documents, and university applications." },
-  { slug: "visa-support", name: "Visa Support", blurb: "Step-by-step preparation and submission support." },
-  { slug: "career-pathway", name: "Career Pathway", blurb: "Plan your post-study options and long-term growth." },
-] as const;
-
 export default function ServicesPage() {
   return (
     <main className="mx-auto w-full max-w-[1360px] px-6 md:px-10 lg:px-12 py-12 md:py-16">
-      <header className="grid gap-4 max-w-[70ch]">
-        <h1 className="font-display text-4xl md:text-5xl font-bold tracking-[-0.04em]">Services</h1>
-        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-          Clear guidance at every step—from choosing a destination to preparing your application.
-        </p>
-      </header>
+      <PageHeader
+        title="Services"
+        description="Clear guidance at every step - from choosing a destination to preparing your application."
+      />
 
-      <section className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((s) => (
-          <Link key={s.slug} href={`/services/${s.slug}`} className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:border-border/80">
-            <h2 className="font-display text-xl font-bold tracking-[-0.02em]">{s.name}</h2>
-            <p className="mt-2 text-[1rem] leading-relaxed text-muted-foreground">{s.blurb}</p>
-            <p className="mt-4 font-semibold text-primary">View service</p>
-          </Link>
-        ))}
-      </section>
+      <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_0.75fr] lg:items-start">
+        <TrustBar />
+        <OfficesMini className="lg:mt-1" />
+      </div>
+
+      <ServicesBentoGrid showHeading={false} className="mt-10 py-0 md:py-0" />
+
+      <ProcessSteps />
+      <TestimonialsSection />
+      <FAQAccordion />
+      <CTABand />
     </main>
   );
 }

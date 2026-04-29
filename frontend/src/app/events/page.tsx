@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { CTABand } from "@/components/sections/CTABand";
+import { FAQAccordion } from "@/components/sections/FAQAccordion";
+import { ProcessSteps } from "@/components/sections/ProcessSteps";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { TrustBar } from "@/components/sections/TrustBar";
+import { OfficesMini } from "@/components/sections/OfficesMini";
+import { PageHeader } from "@/components/layout/PageHeader";
+import { LocaleLink } from "@/components/i18n/LocaleLink";
 
 export const metadata: Metadata = {
   title: "Events | Care2 Training",
@@ -14,25 +21,33 @@ const events = [
 export default function EventsPage() {
   return (
     <main className="mx-auto w-full max-w-[1360px] px-6 md:px-10 lg:px-12 py-12 md:py-16">
-      <header className="grid gap-4 max-w-[70ch]">
-        <h1 className="font-display text-4xl md:text-5xl font-bold tracking-[-0.04em]">Events</h1>
-        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-          Join our upcoming sessions to get clarity on destinations, requirements, and application steps.
-        </p>
-      </header>
+      <PageHeader
+        title="Events"
+        description="Join our upcoming sessions to get clarity on destinations, requirements, and application steps."
+      />
 
-      <section className="mt-10 grid gap-5 lg:grid-cols-2">
+      <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_0.75fr] lg:items-start">
+        <TrustBar />
+        <OfficesMini className="lg:mt-1" />
+      </div>
+
+      <section className="mt-8 grid gap-5 lg:grid-cols-2">
         {events.map((e) => (
-          <Link key={e.slug} href={`/events/${e.slug}`} className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:border-border/80">
+          <LocaleLink key={e.slug} href={`/events/${e.slug}`} className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:border-border/80">
             <div className="flex items-start justify-between gap-4">
               <h2 className="font-display text-xl font-bold tracking-[-0.02em]">{e.name}</h2>
               <span className="rounded-full bg-muted px-3 py-1 text-[0.9rem] font-semibold text-muted-foreground">{e.meta}</span>
             </div>
             <p className="mt-3 text-[1rem] leading-relaxed text-muted-foreground">{e.blurb}</p>
             <p className="mt-4 font-semibold text-primary">View event</p>
-          </Link>
+          </LocaleLink>
         ))}
       </section>
+
+      <ProcessSteps showHeading={false} className="py-0 md:py-0 mt-12" />
+      <TestimonialsSection showHeading={false} className="py-0 md:py-0 mt-12" />
+      <FAQAccordion />
+      <CTABand />
     </main>
   );
 }
