@@ -6,7 +6,8 @@ import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
 import { CTABand } from "@/components/sections/CTABand";
 import { PartnersSection } from "@/components/sections/PartnersSection";
-import { AboutPreviewSection } from "@/components/sections/AboutPreviewSection";
+import { GetToKnowAboutUsSection } from "@/components/sections/GetToKnowAboutUsSection";
+import { AboutPreviewSection } from "../sections/AboutPreviewSection";
 
 export function HomeHero({
   locale = "en",
@@ -24,7 +25,9 @@ export function HomeHero({
         <HeroSection />
         <StatsStrip />
         <PartnersSection locale={locale} />
-        <AboutPreviewSection />
+          <AboutPreviewSection />
+        {/* <GetToKnowAboutUsSection /> */}
+       
         <ServicesBentoGrid />
         <ProcessSteps />
         <TestimonialsSection />
