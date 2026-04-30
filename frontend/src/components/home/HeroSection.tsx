@@ -34,7 +34,7 @@ export function HeroSection() {
           </LocaleLink>
           <LocaleLink
             href="/study-destinations"
-            className="flex justify-center rounded-full px-8 py-3.5 sm:py-3 text-[1rem] font-montserrat font-bold transition-all duration-200 ease-in-out bg-white/5 border border-white/10 backdrop-blur-xl text-white hover:bg-white/10 active:scale-95"
+            className="flex justify-center rounded-full px-8 py-3.5 sm:py-3 text-[1rem] font-montserrat font-bold transition-all duration-200 ease-in-out bg-foreground/10 border border-foreground/20 text-foreground hover:bg-foreground/15 active:scale-95"
           >
             {t("hero.ctaSecondary")}
           </LocaleLink>

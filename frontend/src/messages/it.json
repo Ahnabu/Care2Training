@@ -1,0 +1,61 @@
+{
+  "site": {
+    "name": "Care2 Training",
+    "tagline": "Orientamento per studiare all'estero",
+    "cta": {
+      "bookAppointment": "Prenota un appuntamento"
+    }
+  },
+  "nav": {
+    "about": "Chi siamo",
+    "studyDestinations": "Destinazioni di Studio",
+    "services": "Servizi",
+    "events": "Eventi",
+    "blogs": "Blog",
+    "contact": "Contatti"
+  },
+  "language": {
+    "label": "Lingua",
+    "english": "Inglese",
+    "bangla": "Bengalese"
+  },
+  "leadForm": {
+    "title": "Ottieni consigli esperti per il tuo futuro all'estero",
+    "subtitle": "Un breve modulo passo-passo progettato per essere compilato facilmente."
+  },
+  "aboutPreview": {
+    "title": "Dall'orientamento professionale all'ammissione universitaria",
+    "subtitle": "Come Care2 Training Global semplifica il tuo percorso di studi all'estero?",
+    "p1": "Scegliere il giusto percorso professionale è una delle decisioni più importanti nella vita di uno studente. Presso la nostra consulenza, offriamo un orientamento esperto per aiutare gli studenti a scoprire il loro vero potenziale e allinearlo alle opportunità future. Attraverso una guida personalizzata, ci assicuriamo che ogni studente trovi la giusta direzione prima di intraprendere l'istruzione superiore.",
+    "p2": "Una volta chiaro il percorso professionale, scegliere l'università giusta diventa il prossimo grande passo. Con la nostra conoscenza aggiornata delle migliori università, dei corsi disponibili, delle borse di studio e dei requisiti di ammissione, guidiamo gli studenti verso le opzioni più adatte. Questo non solo fa risparmiare tempo prezioso, ma aumenta anche le possibilità di ammissione a istituzioni di livello mondiale.",
+    "p3": "Dall'orientamento professionale all'ammissione universitaria, rimaniamo al tuo fianco in ogni fase del viaggio. Il nostro team dedicato assiste con le domande di iscrizione, la documentazione, la gestione del visto e perfino con la preparazione per una transizione fluida all'estero. Con il nostro completo sistema di supporto, studiare nell'università dei tuoi sogni non è più solo un obiettivo, diventa la tua realtà.",
+    "experience": "3+",
+    "experienceText": "Anni di esperienza",
+    "accommodation": "Alloggio",
+    "accommodationDesc": "Care2 Training aiuta gli studenti a trovare alloggi sicuri e confortevoli vicino alla loro università.",
+    "careerCounselling": "Orientamento Professionale",
+    "careerCounsellingDesc": "Care2 Training fornisce una guida esperta per scegliere il giusto percorso professionale e le opzioni di studio."
+  },
+  "getToKnowAboutUs": {
+    "p1": "Il nostro viaggio è iniziato con un semplice sogno, rendere l'istruzione globale e le opportunità di carriera accessibili a tutti. I Servizi Educativi <bold>Care2 Training</bold> sono stati fondati con l'obiettivo di guidare gli studenti passo dopo passo, proprio come farebbe un mentore di fiducia o un membro della famiglia.",
+    "p2": "Supportiamo gli studenti in ogni fase del loro percorso accademico all'estero, dalla scelta dell'università all'assistenza per l'ammissione e il visto. Nel corso del tempo, la nostra <bold>missione</bold> si è espansa. Dallo sviluppo delle competenze alla consulenza professionale e all'orientamento per l'inserimento lavorativo, prepariamo studenti e professionisti a eccellere nel mercato globale.",
+    "p3": "Presso <bold>Care2 Training</bold>, crediamo che l'istruzione e la carriera non siano solo obiettivi ma viaggi per tutta la vita. Il nostro ruolo è rendere questi viaggi più facili, affidabili e significativi."
+  },
+  "hero": {
+    "title1": "Eleva il tuo",
+    "title2": "Futuro Globale",
+    "subtitle": "Assicura il tuo futuro con la nostra consulenza esperta su visti, ammissioni alle migliori università e crescita professionale internazionale.",
+    "ctaPrimary": "Inizia la Domanda",
+    "ctaSecondary": "Parla con un Esperto"
+  },
+  "stats": {
+    "visaSuccess": "Tasso di successo dei visti",
+    "partners": "Università Partner",
+    "careers": "Carriere Avviate"
+  },
+  "partners": {
+    "badge": "I nostri partner",
+    "title": "I Nostri Partner",
+    "subtitle": "Collaboriamo con le migliori istituzioni in tutto il mondo per rendere il tuo percorso di studi all'estero più semplice e fluido."
+  }
+}

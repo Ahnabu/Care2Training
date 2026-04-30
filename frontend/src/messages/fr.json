@@ -1,0 +1,61 @@
+{
+  "site": {
+    "name": "Care2 Training",
+    "tagline": "Accompagnement pour étudier à l'étranger",
+    "cta": {
+      "bookAppointment": "Prendre un rendez-vous"
+    }
+  },
+  "nav": {
+    "about": "À propos",
+    "studyDestinations": "Destinations d'études",
+    "services": "Services",
+    "events": "Événements",
+    "blogs": "Blogs",
+    "contact": "Contact"
+  },
+  "language": {
+    "label": "Langue",
+    "english": "Anglais",
+    "bangla": "Bengali"
+  },
+  "leadForm": {
+    "title": "Obtenez des conseils d'experts pour votre avenir à l'étranger",
+    "subtitle": "Un formulaire court et étape par étape, conçu pour être facile à remplir."
+  },
+  "aboutPreview": {
+    "title": "De l'orientation professionnelle à l'admission universitaire",
+    "subtitle": "Comment Care2 Training Global simplifie votre parcours d'études à l'étranger ?",
+    "p1": "Choisir la bonne voie professionnelle est l'une des décisions les plus importantes dans la vie d'un étudiant. Dans notre cabinet de conseil, nous offrons une orientation professionnelle experte pour aider les étudiants à découvrir leur véritable potentiel et l'aligner avec leurs opportunités futures. Grâce à un accompagnement personnalisé, nous nous assurons que chaque étudiant trouve la bonne direction avant d'entrer dans l'enseignement supérieur.",
+    "p2": "Une fois la voie professionnelle claire, choisir la bonne université devient la prochaine grande étape. Avec nos connaissances actualisées sur les meilleures universités, les cours disponibles, les bourses et les conditions d'admission, nous guidons les étudiants vers les options les plus adaptées. Cela permet non seulement de gagner un temps précieux, mais aussi d'augmenter les chances d'admission dans des institutions de renommée mondiale.",
+    "p3": "De l'orientation professionnelle à l'admission universitaire, nous restons à vos côtés à chaque étape du voyage. Notre équipe dédiée aide pour les candidatures, la documentation, le traitement des visas et même la préparation pour une transition en douceur à l'étranger. Avec notre système de soutien complet, étudier dans l'université de vos rêves n'est plus seulement un but, cela devient votre réalité.",
+    "experience": "3+",
+    "experienceText": "Années d'expérience",
+    "accommodation": "Hébergement",
+    "accommodationDesc": "Care2 Training aide les étudiants à trouver un logement sûr et confortable près de leur université.",
+    "careerCounselling": "Orientation professionnelle",
+    "careerCounsellingDesc": "Care2 Training fournit des conseils d'experts pour choisir la bonne voie professionnelle et les options d'études."
+  },
+  "getToKnowAboutUs": {
+    "p1": "Notre voyage a commencé avec un rêve simple : rendre l'éducation mondiale et les opportunités de carrière accessibles à tous. Les Services Éducatifs <bold>Care2 Training</bold> ont été fondés dans le but de guider les étudiants étape par étape, tout comme un mentor de confiance ou un membre de la famille.",
+    "p2": "Nous soutenons les étudiants à chaque étape de leur parcours académique à l'étranger, du choix de la bonne université à l'assistance pour l'admission et le visa. Au fil du temps, notre <bold>mission</bold> s'est élargie. Du développement des compétences à l'orientation professionnelle en passant par l'aide au placement, nous préparons les étudiants et les professionnels à réussir sur le marché mondial.",
+    "p3": "Chez <bold>Care2 Training</bold>, nous croyons que l'éducation et la carrière ne sont pas seulement des objectifs, mais des voyages tout au long de la vie. Notre rôle est de rendre ces voyages plus faciles, fiables et plus significatifs."
+  },
+  "hero": {
+    "title1": "Élevez Votre",
+    "title2": "Avenir Global",
+    "subtitle": "Assurez votre avenir grâce à des conseils d'experts sur les demandes de visa, les placements dans les meilleures universités et le développement de carrière internationale.",
+    "ctaPrimary": "Commencer la demande",
+    "ctaSecondary": "Parler à un expert"
+  },
+  "stats": {
+    "visaSuccess": "Taux de réussite des visas",
+    "partners": "Universités partenaires",
+    "careers": "Carrières lancées"
+  },
+  "partners": {
+    "badge": "Nos partenaires",
+    "title": "Nos Partenaires",
+    "subtitle": "Nous collaborons avec les meilleures institutions du monde entier pour rendre votre parcours d'études à l'étranger plus facile et plus fluide."
+  }
+}

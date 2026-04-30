@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 import { offices, siteContact } from "@/content/offices";
+import { Mail } from "lucide-react";
 
 const quickLinks = [
   { label: "About", href: "/about" },
@@ -37,19 +38,19 @@ export function SiteFooter() {
             <p className="max-w-[52ch] text-[1rem] leading-relaxed text-muted-foreground">
               Guidance for study abroad, admissions, and career pathways—delivered with clarity, speed, and care.
             </p>
-            <div className="flex flex-wrap gap-3 pt-2 text-[0.98rem]">
-              <a className="font-semibold text-foreground hover:text-primary" href={`mailto:${siteContact.email}`}>
+            <div className="flex flex-col gap-2.5 pt-2 text-[0.98rem]">
+              <a className="flex items-center gap-2 font-semibold text-foreground hover:text-primary transition-colors" href={`mailto:${siteContact.email}`}>
+                <Mail size={16} className="text-muted-foreground" />
                 {siteContact.email}
               </a>
-              <span className="text-muted-foreground">•</span>
-              {siteContact.phones.map((p, idx) => (
-                <span key={p.tel} className="inline-flex items-center gap-3">
-                  {idx === 1 ? <span className="text-muted-foreground">•</span> : null}
-                  <a className="font-semibold text-foreground hover:text-primary" href={`tel:${p.tel}`}>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-4">
+                {siteContact.phones.map((p) => (
+                  <a key={p.tel} className="flex items-center gap-2 font-semibold text-foreground hover:text-primary transition-colors" href={`tel:${p.tel}`}>
+                    <span className="text-muted-foreground">{p.tel.startsWith("+880") ? "🇧🇩" : "🇬🇧"}</span>
                     {p.label}
                   </a>
-                </span>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 

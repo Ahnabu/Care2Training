@@ -34,16 +34,16 @@ export function CTABand({
             </p>
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
+          <div className="flex flex-col gap-3 sm:flex-row sm:justify-end shrink-0">
             <LocaleLink
               href={primaryHref}
-              className="inline-flex h-11 items-center justify-center rounded-full clay-button px-6 font-montserrat font-bold text-white transition-transform active:scale-95 duration-200"
+              className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full clay-button px-6 font-montserrat font-bold text-white transition-transform active:scale-95 duration-200"
             >
               {primaryLabel}
             </LocaleLink>
             <LocaleLink
               href={secondaryHref}
-              className="inline-flex h-11 items-center justify-center rounded-full border border-border bg-background px-6 font-montserrat font-bold text-foreground hover:border-primary hover:text-primary transition-colors"
+              className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full border border-border bg-background px-6 font-montserrat font-bold text-foreground hover:border-primary hover:text-primary transition-colors"
             >
               {secondaryLabel}
             </LocaleLink>

@@ -1,0 +1,61 @@
+{
+  "site": {
+    "name": "Care2 Training",
+    "tagline": "Välismaal õppimise juhendamine",
+    "cta": {
+      "bookAppointment": "Broneeri aeg"
+    }
+  },
+  "nav": {
+    "about": "Meist",
+    "studyDestinations": "Õppesihtkohad",
+    "services": "Teenused",
+    "events": "Sündmused",
+    "blogs": "Blogid",
+    "contact": "Kontakt"
+  },
+  "language": {
+    "label": "Keel",
+    "english": "Inglise",
+    "bangla": "Bengali"
+  },
+  "leadForm": {
+    "title": "Saa asjatundlikku nõu oma välismaa tuleviku kohta",
+    "subtitle": "Lühike ja samm-sammuline vorm, mida on lihtne täita."
+  },
+  "aboutPreview": {
+    "title": "Karjäärinõustamisest kuni ülikooli sisseastumiseni",
+    "subtitle": "Kuidas Care2 Training Global lihtsustab sinu välismaale õppima asumist?",
+    "p1": "Õige karjääri valimine on üks olulisemaid otsuseid üliõpilase elus. Meie konsultatsioonibüroos pakume asjatundlikku karjäärinõustamist, mis aitab õpilastel avastada oma tõelist potentsiaali ja viia see vastavusse tuleviku võimalustega. Personaalse juhendamise abil tagame, et iga õpilane leiab õige suuna enne kõrgharidusse astumist.",
+    "p2": "Kui karjäärisuund on selge, on õige ülikooli valimine järgmine suur samm. Meie ajakohased teadmised tippülikoolide, saadaolevate kursuste, stipendiumide ja sisseastumistingimuste kohta võimaldavad meil suunata õpilasi kõige sobivamate valikuteni. See mitte ainult ei säästa väärtuslikku aega, vaid suurendab ka võimalust pääseda maailmatasemel õppeasutustesse.",
+    "p3": "Karjäärinõustamisest kuni ülikooli sisseastumiseni oleme sinuga igal sammul. Meie pühendunud meeskond aitab avalduste esitamisel, dokumentatsioonil, viisataotlustel ja isegi välismaale kolimiseks valmistumisel. Tänu meie terviklikule tugisüsteemile pole unistuste ülikoolis õppimine enam lihtsalt eesmärk, vaid muutub sinu reaalsuseks.",
+    "experience": "3+",
+    "experienceText": "Aastat kogemust",
+    "accommodation": "Majutus",
+    "accommodationDesc": "Care2 Training aitab õpilastel leida turvalise ja mugava elukoha ülikooli lähedal.",
+    "careerCounselling": "Karjäärinõustamine",
+    "careerCounsellingDesc": "Care2 Training pakub asjatundlikku juhendamist õige karjääritee ja õppimisvõimaluste valimisel."
+  },
+  "getToKnowAboutUs": {
+    "p1": "Meie teekond sai alguse lihtsast unistusest: teha globaalne haridus ja karjäärivõimalused kõigile kättesaadavaks. <bold>Care2 Training</bold> Haridusteenused asutati eesmärgiga juhendada õpilasi samm-sammult, nagu teeks seda usaldusväärne mentor või pereliige.",
+    "p2": "Toetame õpilasi igas välismaal õppimise etapis, alates õige ülikooli valimisest kuni sisseastumis- ja viisaabini. Aja jooksul on meie <bold>missioon</bold> laienenud. Oskuste arendamisest kuni karjäärinõustamise ja tööotsingu juhendamiseni valmistame õpilasi ja spetsialiste ette eduks maailmaturul.",
+    "p3": "Ettevõttes <bold>Care2 Training</bold> usume, et haridus ja karjäär pole lihtsalt eesmärgid, vaid elukestvad rännakud. Meie roll on muuta need teekonnad lihtsamaks, usaldusväärsemaks ja tähendusrikkamaks."
+  },
+  "hero": {
+    "title1": "Tõsta Oma",
+    "title2": "Globaalset Tulevikku",
+    "subtitle": "Kinda oma tulevik asjatundliku juhendamisega viisataotluste, tippülikoolidesse sisseastumise ja rahvusvahelise karjääri kasvu osas.",
+    "ctaPrimary": "Alusta Avaldust",
+    "ctaSecondary": "Räägi Eksperdiga"
+  },
+  "stats": {
+    "visaSuccess": "Viisade õnnestumise määr",
+    "partners": "Partnerülikoolid",
+    "careers": "Alustatud Karjäärid"
+  },
+  "partners": {
+    "badge": "Meie partnerid",
+    "title": "Meie Partnerid",
+    "subtitle": "Teeme koostööd tippasutustega kogu maailmas, et muuta sinu välismaal õppimise teekond sujuvamaks ja lihtsamaks."
+  }
+}

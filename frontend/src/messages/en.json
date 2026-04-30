@@ -29,10 +29,17 @@
     "p1": "Choosing the right career path is one of the most important decisions in a student's life. At our consultancy, we provide expert career counselling to help students discover their true potential and align it with future opportunities. Through personalized guidance, we ensure that every student finds the right direction before entering higher education.",
     "p2": "Once the career path is clear, selecting the right university becomes the next big step. With our updated knowledge about top universities, available courses, scholarships, and admission requirements, we guide students towards the most suitable options. This not only saves valuable time but also increases the chances of securing admission to world-class institutions.",
     "p3": "From career counselling to university admission, we stay by your side at every step of the journey. Our dedicated team assists with applications, documentation, visa processing, and even preparation for a smooth transition abroad. With our complete support system, studying in your dream university is no longer just a goal it becomes your reality.",
+    "experience": "3+",
+    "experienceText": "Years of Experience",
     "accommodation": "Accommodation",
     "accommodationDesc": "Care2 Training helps students find safe and comfortable housing near their university.",
     "careerCounselling": "Career Counselling",
     "careerCounsellingDesc": "Care2 Training provides expert guidance to choose the right career path and study options."
+  },
+  "getToKnowAboutUs": {
+    "p1": "Our journey started with a simple dream, to make global education and career opportunities reachable for everyone. <bold>Care2 Training</bold> Educational Services was founded with the aim of guiding students step by step, just like a trusted mentor or a family member.",
+    "p2": "We support students in every stage of their academic journey abroad, from choosing the right university to admission and visa assistance. Over time, our <bold>mission</bold> has expanded. From skill development to career counseling and job placement guidance, we prepare students and professionals to succeed in the global market.",
+    "p3": "At <bold>Care2 Training</bold>, we believe that education and career are not just goals but lifelong journeys. Our role is to make those journeys easier, reliable, and more meaningful."
   },
   "hero": {
     "title1": "Elevate Your",

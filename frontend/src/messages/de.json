@@ -1,0 +1,61 @@
+{
+  "site": {
+    "name": "Care2 Training",
+    "tagline": "Beratung für ein Studium im Ausland",
+    "cta": {
+      "bookAppointment": "Termin buchen"
+    }
+  },
+  "nav": {
+    "about": "Über uns",
+    "studyDestinations": "Studienziele",
+    "services": "Dienstleistungen",
+    "events": "Veranstaltungen",
+    "blogs": "Blogs",
+    "contact": "Kontakt"
+  },
+  "language": {
+    "label": "Sprache",
+    "english": "Englisch",
+    "bangla": "Bengalisch"
+  },
+  "leadForm": {
+    "title": "Holen Sie sich fachkundige Beratung für Ihre Zukunft im Ausland",
+    "subtitle": "Ein kurzes, schrittweises Formular, das einfach auszufüllen ist."
+  },
+  "aboutPreview": {
+    "title": "Von der Berufsberatung bis zur Hochschulzulassung",
+    "subtitle": "Wie Care2 Training Global Ihr Auslandsstudium vereinfacht?",
+    "p1": "Die Wahl des richtigen Karrierewegs ist eine der wichtigsten Entscheidungen im Leben eines Studenten. In unserer Beratung bieten wir eine fachkundige Berufsberatung, um Studenten zu helfen, ihr wahres Potenzial zu entdecken und es auf zukünftige Möglichkeiten abzustimmen. Durch persönliche Betreuung stellen wir sicher, dass jeder Student vor Beginn der Hochschulbildung die richtige Richtung findet.",
+    "p2": "Sobald der Karriereweg klar ist, wird die Wahl der richtigen Universität der nächste große Schritt. Mit unserem aktuellen Wissen über Top-Universitäten, verfügbare Kurse, Stipendien und Zulassungsvoraussetzungen führen wir die Studenten zu den am besten geeigneten Optionen. Dies spart nicht nur wertvolle Zeit, sondern erhöht auch die Chancen auf eine Zulassung an erstklassigen Institutionen.",
+    "p3": "Von der Berufsberatung bis zur Hochschulzulassung stehen wir Ihnen bei jedem Schritt der Reise zur Seite. Unser engagiertes Team hilft bei Bewerbungen, Dokumentation, Visabearbeitung und sogar bei der Vorbereitung auf einen reibungslosen Übergang ins Ausland. Mit unserem kompletten Unterstützungssystem ist das Studium an Ihrer Traumuniversität nicht länger nur ein Ziel, es wird zu Ihrer Realität.",
+    "experience": "3+",
+    "experienceText": "Jahre Erfahrung",
+    "accommodation": "Unterkunft",
+    "accommodationDesc": "Care2 Training hilft Studenten, eine sichere und komfortable Unterkunft in der Nähe ihrer Universität zu finden.",
+    "careerCounselling": "Berufsberatung",
+    "careerCounsellingDesc": "Care2 Training bietet fachkundige Anleitung zur Auswahl des richtigen Karrierewegs und der Studienoptionen."
+  },
+  "getToKnowAboutUs": {
+    "p1": "Unsere Reise begann mit einem einfachen Traum: weltweite Bildungs- und Karrieremöglichkeiten für jeden erreichbar zu machen. <bold>Care2 Training</bold> Educational Services wurde mit dem Ziel gegründet, Studenten Schritt für Schritt zu begleiten, genau wie ein vertrauenswürdiger Mentor oder ein Familienmitglied.",
+    "p2": "Wir unterstützen Studenten in jeder Phase ihrer akademischen Reise im Ausland, von der Wahl der richtigen Universität bis hin zur Unterstützung bei Zulassung und Visum. Im Laufe der Zeit hat sich unsere <bold>Mission</bold> erweitert. Von der Kompetenzentwicklung bis zur Berufsberatung und Hilfe bei der Arbeitsvermittlung bereiten wir Studenten und Fachleute darauf vor, auf dem globalen Markt erfolgreich zu sein.",
+    "p3": "Bei <bold>Care2 Training</bold> glauben wir, dass Bildung und Karriere nicht nur Ziele sind, sondern lebenslange Reisen. Unsere Rolle besteht darin, diese Reisen einfacher, zuverlässiger und bedeutungsvoller zu machen."
+  },
+  "hero": {
+    "title1": "Erheben Sie Ihre",
+    "title2": "Globale Zukunft",
+    "subtitle": "Sichern Sie Ihre Zukunft durch fachkundige Beratung bei Visumanträgen, Zulassungen an Top-Universitäten und internationalem Karrierewachstum.",
+    "ctaPrimary": "Bewerbung Starten",
+    "ctaSecondary": "Mit einem Experten Sprechen"
+  },
+  "stats": {
+    "visaSuccess": "Visum-Erfolgsquote",
+    "partners": "Partneruniversitäten",
+    "careers": "Karrieren Gestartet"
+  },
+  "partners": {
+    "badge": "Unsere Partner",
+    "title": "Unsere Partner",
+    "subtitle": "Wir arbeiten mit Top-Institutionen weltweit zusammen, um Ihre Reise für ein Auslandsstudium reibungsloser und einfacher zu gestalten."
+  }
+}

@@ -25,9 +25,8 @@ export function HomeHero({
         <HeroSection />
         <StatsStrip />
         <PartnersSection locale={locale} />
-          <AboutPreviewSection />
-        {/* <GetToKnowAboutUsSection /> */}
-       
+        <AboutPreviewSection />
+        <GetToKnowAboutUsSection />
         <ServicesBentoGrid />
         <ProcessSteps />
         <TestimonialsSection />

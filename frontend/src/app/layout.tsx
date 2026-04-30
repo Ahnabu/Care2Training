@@ -17,7 +17,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "CareTraining",
+  title: "Care2 Training",
   description: "Healthcare learning experiences for modern teams.",
 };
 

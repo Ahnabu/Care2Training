@@ -18,7 +18,7 @@ export function StatsStrip() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: "easeOut", delay: 0.28 }}
-      className="w-full flex justify-center -mt-16 md:-mt-20 lg:-mt-24 relative z-10"
+      className="w-full flex justify-center -mt-10 md:-mt-14 lg:-mt-16 relative z-10"
     >
       <div className="max-w-200 border border-border bg-background rounded-[30px] shadow-[0_20px_50px_-28px_rgba(15,23,42,0.24)] p-4 sm:p-6 md:px-10 md:py-7">
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
