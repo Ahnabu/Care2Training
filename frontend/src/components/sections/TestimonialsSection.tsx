@@ -29,7 +29,7 @@ export function TestimonialsSection({
   className?: string;
 }>) {
   return (
-    <section className={`py-12 md:py-16 ${className ?? ""}`}>
+    <section className={`py-10 md:py-16 ${className ?? ""}`}>
       {showHeading ? (
         <header className="grid gap-3 max-w-[70ch] mb-10">
           <p className="text-sm font-bold uppercase tracking-[0.12em] text-muted-foreground">Success stories</p>
@@ -51,10 +51,10 @@ export function TestimonialsSection({
                 <Star key={i} size={16} strokeWidth={2} className="text-primary" fill="none" />
               ))}
             </div>
-            <blockquote className="mt-4 text-[1rem] leading-relaxed text-foreground/95">{t.quote}</blockquote>
+            <blockquote className="mt-4 text-[0.95rem] sm:text-[1rem] leading-relaxed text-foreground/95">{t.quote}</blockquote>
             <div className="mt-6">
-              <p className="font-display text-xl font-bold tracking-[-0.02em]">{t.name}</p>
-              <p className="text-[0.98rem] text-muted-foreground">{t.role}</p>
+              <p className="font-display text-[1.1rem] sm:text-xl font-bold tracking-[-0.02em]">{t.name}</p>
+              <p className="text-[0.9rem] sm:text-[0.98rem] text-muted-foreground">{t.role}</p>
             </div>
           </article>
         ))}

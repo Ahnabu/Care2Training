@@ -25,7 +25,7 @@ export function FAQAccordion({
   className?: string;
 }>) {
   return (
-    <section className={`py-12 md:py-16 ${className ?? ""}`}>
+    <section className={`py-10 md:py-16 ${className ?? ""}`}>
       {showHeading ? (
         <header className="grid gap-3 max-w-[70ch] mb-10">
           <p className="text-sm font-bold uppercase tracking-[0.12em] text-muted-foreground">FAQ</p>

@@ -22,6 +22,34 @@
   "leadForm": {
     "title": "Get Expert Advice for Your Future Abroad",
     "subtitle": "A short, step-by-step form designed to be easy to finish."
+  },
+  "aboutPreview": {
+    "title": "From Career Counselling To University Admission",
+    "subtitle": "How Care2 Training Global Simplifies your Study Abroad Journey?",
+    "p1": "Choosing the right career path is one of the most important decisions in a student's life. At our consultancy, we provide expert career counselling to help students discover their true potential and align it with future opportunities. Through personalized guidance, we ensure that every student finds the right direction before entering higher education.",
+    "p2": "Once the career path is clear, selecting the right university becomes the next big step. With our updated knowledge about top universities, available courses, scholarships, and admission requirements, we guide students towards the most suitable options. This not only saves valuable time but also increases the chances of securing admission to world-class institutions.",
+    "p3": "From career counselling to university admission, we stay by your side at every step of the journey. Our dedicated team assists with applications, documentation, visa processing, and even preparation for a smooth transition abroad. With our complete support system, studying in your dream university is no longer just a goal it becomes your reality.",
+    "accommodation": "Accommodation",
+    "accommodationDesc": "Care2 Training helps students find safe and comfortable housing near their university.",
+    "careerCounselling": "Career Counselling",
+    "careerCounsellingDesc": "Care2 Training provides expert guidance to choose the right career path and study options."
+  },
+  "hero": {
+    "title1": "Elevate Your",
+    "title2": "Global Future",
+    "subtitle": "Secure your future with expert guidance on visa applications, top university placements, and international career growth.",
+    "ctaPrimary": "Start Application",
+    "ctaSecondary": "Talk to an Expert"
+  },
+  "stats": {
+    "visaSuccess": "Visa Success Rate",
+    "partners": "Partner Universities",
+    "careers": "Careers Launched"
+  },
+  "partners": {
+    "badge": "Our partners",
+    "title": "Our Partners",
+    "subtitle": "We partner with top institutions worldwide to make your study abroad journey smoother and easier."
   }
 }
 

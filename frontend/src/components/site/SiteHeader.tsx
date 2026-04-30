@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -47,8 +48,8 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto w-full max-w-[1360px] px-6 md:px-10 lg:px-12">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-background/60 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+      <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 md:px-10 lg:px-12">
         <div className="flex items-center justify-between gap-4 py-3.5">
           <Link href={hrefWithLocale("/")} className="inline-flex items-center gap-3">
             <span className="relative h-12 w-12 md:h-13 md:w-13 overflow-hidden rounded-2xl border border-border bg-background shadow-sm">
@@ -62,8 +63,8 @@ export function SiteHeader() {
               />
             </span>
             <span className="grid leading-tight">
-              <span className="font-display text-[1.02rem] font-bold tracking-[-0.02em]">{t("site.name")}</span>
-              <span className="text-[0.9rem] text-muted-foreground">{t("site.tagline")}</span>
+              <span className="font-montserrat text-[1.2rem] sm:text-[1.3rem] font-black tracking-[-0.02em] line-clamp-1 gradient-text">{t("site.name")}</span>
+              <span className="hidden sm:block text-[0.9rem] text-muted-foreground line-clamp-1">{t("site.tagline")}</span>
             </span>
           </Link>
 
@@ -108,9 +109,13 @@ export function SiteHeader() {
               </div>
             </div>
 
+            <div className="hidden lg:block">
+              <ThemeToggle />
+            </div>
+
             <Link
               href={hrefWithLocale("/book-appointment")}
-              className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-[0.98rem] font-bold text-primary-foreground shadow-sm hover:bg-primary/90"
+              className="hidden sm:inline-flex items-center justify-center rounded-full clay-button px-6 py-2.5 text-[0.98rem] font-montserrat font-bold text-white transition-transform active:scale-95 duration-200 ease-out"
             >
               {t("site.cta.bookAppointment")}
             </Link>
@@ -128,20 +133,48 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <div className={cn("lg:hidden border-t border-border/60", mobileOpen ? "block" : "hidden")}>
-        <div className="mx-auto w-full max-w-[1360px] px-6 md:px-10 lg:px-12 py-4">
-          <div className="grid gap-2">
+      <div className={cn("lg:hidden absolute left-0 right-0 top-full border-b border-border/60 bg-background/95 backdrop-blur shadow-md", mobileOpen ? "block" : "hidden")}>
+        <div className="mx-auto w-full max-w-[1360px] px-6 py-4 max-h-[calc(100vh-80px)] overflow-y-auto">
+          <div className="grid gap-1 border-b border-border/60 pb-4">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={hrefWithLocale(item.href)}
-                className="rounded-xl px-3 py-2.5 text-[1rem] font-semibold text-foreground hover:bg-muted"
+                className="rounded-xl px-3 py-2.5 text-[1.05rem] font-semibold text-foreground hover:bg-muted"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <p className="pt-2 text-[0.9rem] text-muted-foreground">© {year} Care2Training</p>
+          </div>
+          <div className="flex flex-col gap-4 pt-4">
+            <div className="md:hidden grid grid-cols-2 gap-3">
+              <button 
+                type="button"
+                onClick={() => switchLocale("en")} 
+                className={cn("rounded-xl border px-3 py-2.5 text-center text-[0.95rem] font-semibold transition-colors", locale === "en" ? "border-primary bg-primary/5 text-primary" : "border-border text-foreground hover:bg-muted")}
+              >
+                {t("language.english")}
+              </button>
+              <button 
+                type="button"
+                onClick={() => switchLocale("bn")} 
+                className={cn("rounded-xl border px-3 py-2.5 text-center text-[0.95rem] font-semibold transition-colors", locale === "bn" ? "border-primary bg-primary/5 text-primary" : "border-border text-foreground hover:bg-muted")}
+              >
+                {t("language.bangla")}
+              </button>
+            </div>
+            <Link
+              href={hrefWithLocale("/book-appointment")}
+              className="sm:hidden inline-flex w-full items-center justify-center rounded-full clay-button px-5 py-3.5 text-[1.05rem] font-montserrat font-bold text-white transition-transform active:scale-95 duration-200 ease-out"
+              onClick={() => setMobileOpen(false)}
+            >
+              {t("site.cta.bookAppointment")}
+            </Link>
+            <div className="flex items-center justify-between mt-2 pt-2 border-t border-border/60">
+              <p className="text-center text-[0.9rem] text-muted-foreground">© {year} Care2Training</p>
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </div>

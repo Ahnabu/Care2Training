@@ -1,17 +1,18 @@
-import { Manrope, Sora, Geist } from "next/font/google";
+import { Inter, Lexend, Montserrat } from "next/font/google";
 import "./globals.css";
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const lexend = Lexend({ subsets: ["latin"], variable: "--font-sans" });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const inter = Inter({
+  variable: "--font-display",
   subsets: ["latin"],
 });
 
-const sora = Sora({
-  variable: "--font-sora",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
@@ -22,8 +23,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={cn(manrope.variable, sora.variable, "font-sans", geist.variable)}>
-      <body className="min-h-dvh bg-background text-foreground antialiased">{children}</body>
+    <html lang="en" className={cn(lexend.variable, inter.variable, montserrat.variable, "font-sans")} suppressHydrationWarning>
+      <body className="min-h-dvh bg-background text-foreground antialiased">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

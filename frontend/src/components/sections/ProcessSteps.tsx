@@ -31,7 +31,7 @@ export function ProcessSteps({
   className?: string;
 }>) {
   return (
-    <section className={`py-12 md:py-16 ${className ?? ""}`}>
+    <section className={`py-10 md:py-16 ${className ?? ""}`}>
       {showHeading ? (
         <header className="grid gap-3 max-w-[70ch] mb-10">
           <p className="text-sm font-bold uppercase tracking-[0.12em] text-muted-foreground">How we work</p>
@@ -58,8 +58,8 @@ export function ProcessSteps({
                   Step {idx + 1}
                 </p>
               </div>
-              <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">{s.title}</h3>
-              <p className="text-[1rem] leading-relaxed text-muted-foreground">{s.desc}</p>
+              <h3 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.03em]">{s.title}</h3>
+              <p className="text-[0.95rem] sm:text-[1rem] leading-relaxed text-muted-foreground">{s.desc}</p>
             </div>
           </article>
         ))}

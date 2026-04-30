@@ -30,7 +30,7 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-border bg-background">
-      <div className="mx-auto w-full max-w-[1360px] px-6 md:px-10 lg:px-12 py-12">
+      <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 md:px-10 lg:px-12 py-10 lg:py-12">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div className="grid gap-3">
             <p className="font-display text-xl font-bold tracking-[-0.02em] text-foreground">Care2 Training</p>

@@ -27,7 +27,7 @@ export type PartnerSlideItem = Readonly<{
 function getSlidesPerViewCount(): number {
   if (typeof window === "undefined") return 2;
   const w = window.innerWidth;
-  if (w < 640) return 2;
+  if (w < 640) return 1;
   if (w < 768) return 3;
   if (w < 1024) return 4;
   return 5;
@@ -75,10 +75,9 @@ function PartnerLogoTile({
       }
       className={cn(
         "group relative flex h-[92px] min-h-[92px] min-w-0 items-center justify-center",
-        "rounded-2xl border border-border/80 bg-background/80 px-4 shadow-[0_1px_0_rgba(15,23,42,0.04)]",
-        "backdrop-blur-sm ring-1 ring-black/[0.03]",
-        "transition-[box-shadow,border-color] duration-300",
-        "hover:border-primary/25 hover:shadow-[0_18px_40px_-26px_rgba(39,71,202,0.55)]"
+        "rounded-2xl border border-slate-200 dark:border-slate-800/50 bg-white px-4 shadow-sm",
+        "transition-all duration-300",
+        "hover:border-primary/40 hover:shadow-md dark:hover:shadow-[0_0_20px_rgba(68,226,205,0.15)]"
       )}
     >
       <div className="relative h-[52px] w-full">
@@ -149,7 +148,7 @@ export function PartnersSlider({
 
   useEffect(() => {
     if (!canSlide || paused || reducedMotion) return;
-    const t = window.setInterval(goNext, 5200);
+    const t = window.setInterval(goNext, 3000);
     return () => window.clearInterval(t);
   }, [canSlide, paused, reducedMotion, goNext]);
 
@@ -286,7 +285,7 @@ export function PartnersSlider({
 
       {pageCount > 1 ? (
         <div
-          className="mt-5 flex flex-wrap justify-center gap-2"
+          className="mt-5 hidden sm:flex flex-wrap justify-center gap-2"
           role="tablist"
           aria-label="Partner slides"
         >

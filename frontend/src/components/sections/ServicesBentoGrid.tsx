@@ -22,7 +22,7 @@ export function ServicesBentoGrid({
       blurb: "Step-by-step preparation for a smooth submission and fast follow-up.",
       href: "/services/visa-support",
       icon: ShieldCheck,
-      accent: "from-indigo-500/15 to-transparent",
+      accent: "from-primary/10 to-transparent",
       lg: "lg:col-span-4",
     },
     {
@@ -30,13 +30,13 @@ export function ServicesBentoGrid({
       blurb: "Plan post-study options and build a future-proof career direction.",
       href: "/services/career-pathway",
       icon: Briefcase,
-      accent: "from-indigo-300/30 to-transparent",
+      accent: "from-primary/8 to-transparent",
       lg: "lg:col-span-3",
     },
   ] as const;
 
   return (
-    <section className={`py-12 md:py-16 ${className ?? ""}`}>
+    <section className={`py-10 md:py-16 ${className ?? ""}`}>
       {showHeading ? (
         <header className="grid gap-3 max-w-[70ch] mb-10">
           <p className="text-sm font-bold uppercase tracking-[0.12em] text-muted-foreground">Our Services</p>
@@ -64,9 +64,9 @@ export function ServicesBentoGrid({
                   <BookOpen size={18} strokeWidth={2.2} />
                 </span>
               </div>
-              <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">{s.title}</h3>
-              <p className="text-[1rem] leading-relaxed text-muted-foreground">{s.blurb}</p>
-              <p className="mt-2 font-semibold text-primary group-hover:underline">View details</p>
+              <h3 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.03em] mt-1">{s.title}</h3>
+              <p className="text-[0.95rem] sm:text-[1rem] leading-relaxed text-muted-foreground">{s.blurb}</p>
+              <p className="mt-2 text-[0.95rem] font-semibold text-primary group-hover:underline">View details</p>
             </div>
           </LocaleLink>
         ))}

@@ -1,20 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { stats } from "./hero-data";
+import { Building2, Rocket, ShieldCheck } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function StatsStrip() {
+  const t = useTranslations("stats");
+
+  const stats = [
+    { label: t("visaSuccess"), value: "98%", icon: ShieldCheck },
+    { label: t("partners"), value: "50+", icon: Building2 },
+    { label: t("careers"), value: "10,000+", icon: Rocket },
+  ];
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: "easeOut", delay: 0.28 }}
-      className="w-full max-w-[944px] border border-border bg-background rounded-[30px] shadow-[0_20px_50px_-28px_rgba(15,23,42,0.24)] p-6 md:-mt-7 md:px-10 md:py-7"
+      className="w-full max-w-[944px] border border-border bg-background rounded-[30px] shadow-[0_20px_50px_-28px_rgba(15,23,42,0.24)] p-4 sm:p-6 md:-mt-7 md:px-10 md:py-7"
     >
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
         {stats.map((item) => (
           <article key={item.label} className="flex items-center gap-4">
-            <div className="shrink-0 grid place-items-center w-[52px] h-[52px] rounded-[18px] bg-indigo-50 text-indigo-600">
+            <div className="shrink-0 grid place-items-center w-[52px] h-[52px] rounded-[18px] bg-primary/10 text-primary">
               <item.icon size={28} strokeWidth={2} />
             </div>
             <div>

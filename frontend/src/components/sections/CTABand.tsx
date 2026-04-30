@@ -16,10 +16,10 @@ export function CTABand({
   showLegalLinks?: boolean;
 }>) {
   return (
-    <section className={`py-12 md:py-16 ${className ?? ""}`}>
-      <div className="relative overflow-hidden rounded-[30px] border border-border bg-card p-8 md:p-10 shadow-sm">
+    <section className={`py-10 md:py-16 ${className ?? ""}`}>
+      <div className="relative overflow-hidden rounded-[30px] border border-border bg-card p-6 sm:p-8 md:p-10 shadow-sm">
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/20 via-indigo-500/10 to-transparent"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent"
           aria-hidden="true"
         />
 
@@ -37,13 +37,13 @@ export function CTABand({
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
             <LocaleLink
               href={primaryHref}
-              className="inline-flex h-11 items-center justify-center rounded-xl bg-primary px-6 font-bold text-primary-foreground hover:bg-primary/90"
+              className="inline-flex h-11 items-center justify-center rounded-full clay-button px-6 font-montserrat font-bold text-white transition-transform active:scale-95 duration-200"
             >
               {primaryLabel}
             </LocaleLink>
             <LocaleLink
               href={secondaryHref}
-              className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-background px-6 font-bold text-foreground hover:border-border/80 hover:text-primary"
+              className="inline-flex h-11 items-center justify-center rounded-full border border-border bg-background px-6 font-montserrat font-bold text-foreground hover:border-primary hover:text-primary transition-colors"
             >
               {secondaryLabel}
             </LocaleLink>
