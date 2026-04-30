@@ -352,14 +352,54 @@ export function SiteHeader() {
           </div>
 
           <div className="flex flex-col gap-4 pt-4">
-            {/* Mobile language grid */}
-            <div className="grid grid-cols-2 gap-2">
-              {LANGUAGES.map(lang => (
-                <button key={lang.code} type="button" onClick={() => { switchLocale(lang.code); setMobileOpen(false); }}
-                  className={cn("rounded-xl border px-3 py-2 flex items-center gap-2 text-[0.88rem] font-semibold transition-colors", locale === lang.code ? "border-primary bg-primary/5 text-primary" : "border-border text-foreground hover:bg-muted")}>
-                  <span className="text-base leading-none">{lang.flag}</span> {lang.label}
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <div className="relative" ref={langRef}>
+                <button
+                  type="button"
+                  onClick={() => setLangOpen(v => !v)}
+                  className="inline-flex w-full items-center justify-between rounded-xl border border-border bg-background px-4 py-3 text-[0.92rem] font-semibold text-foreground hover:border-primary/60 transition-colors"
+                  aria-expanded={langOpen}
+                  aria-label="Select language"
+                >
+                  <span className="inline-flex items-center gap-2">
+                    <span className="text-base leading-none">{currentLang?.flag}</span>
+                    <span>{currentLang?.label}</span>
+                  </span>
+                  <ChevronDown size={14} className={cn("transition-transform duration-200", langOpen && "rotate-180")} />
                 </button>
-              ))}
+
+                <div className={cn(
+                  "absolute left-0 right-0 top-full mt-2 rounded-2xl border border-border bg-background shadow-xl overflow-hidden transition-all duration-200 z-50",
+                  langOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-1 pointer-events-none"
+                )}>
+                  {LANGUAGES.map(lang => (
+                    <button
+                      key={lang.code}
+                      type="button"
+                      className={cn(
+                        "w-full px-4 py-3 flex items-center gap-2.5 text-left text-[0.92rem] hover:bg-muted transition-colors",
+                        locale === lang.code ? "bg-primary/5 text-primary font-bold" : "text-foreground font-medium"
+                      )}
+                      onClick={() => {
+                        switchLocale(lang.code);
+                        setMobileOpen(false);
+                      }}
+                    >
+                      <span className="text-base leading-none">{lang.flag}</span>
+                      <span>{lang.label}</span>
+                      <span className="ml-auto text-[0.72rem] font-bold text-muted-foreground">{lang.short}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <Link
+                href={hrefWithLocale("/agent-registration")}
+                className="inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-3 text-[1rem] font-bold text-white transition-colors hover:bg-primary/90"
+                onClick={() => setMobileOpen(false)}
+              >
+                Become an Agent
+              </Link>
             </div>
 
             <Link href={hrefWithLocale("/book-appointment")} className="inline-flex w-full items-center justify-center rounded-full clay-button px-5 py-3 text-[1rem] font-montserrat font-bold text-white transition-transform active:scale-95 duration-200 ease-out" onClick={() => setMobileOpen(false)}>
