@@ -14,6 +14,14 @@
     "blogs": "ব্লগ",
     "contact": "যোগাযোগ"
   },
+  "studyDestinationsPage": {
+    "listingDescription": "গন্তব্য বেছে নিন এবং প্রয়োজনীয়তা, সময়সূচি ও আমাদের সহায়তা সম্পর্কে জানুন।",
+    "viewDetails": "বিস্তারিত দেখুন",
+    "topBadge": "শীর্ষ গন্তব্য",
+    "guideEyebrow": "গন্তব্য গাইড",
+    "ctaPrimary": "অ্যাপয়েন্টমেন্ট বুক করুন",
+    "ctaSecondary": "সেবাসমূহ দেখুন"
+  },
   "language": {
     "label": "ভাষা",
     "english": "English",

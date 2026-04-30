@@ -14,6 +14,14 @@
     "blogs": "Blogs",
     "contact": "Kontakt"
   },
+  "studyDestinationsPage": {
+    "listingDescription": "Studienziele entdecken – Anforderungen, Zeitplan und unsere Unterstützung.",
+    "viewDetails": "Details ansehen",
+    "topBadge": "Top-Ziel",
+    "guideEyebrow": "Ziel-Guide",
+    "ctaPrimary": "Termin buchen",
+    "ctaSecondary": "Leistungen"
+  },
   "language": {
     "label": "Sprache",
     "english": "Englisch",

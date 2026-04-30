@@ -14,6 +14,14 @@
     "blogs": "Blogs",
     "contact": "Contact"
   },
+  "studyDestinationsPage": {
+    "listingDescription": "Browse destinations and see requirements, timelines, and the support we provide.",
+    "viewDetails": "View details",
+    "topBadge": "Top pick",
+    "guideEyebrow": "Destination guide",
+    "ctaPrimary": "Book appointment",
+    "ctaSecondary": "Explore services"
+  },
   "language": {
     "label": "Language",
     "english": "English",

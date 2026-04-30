@@ -19,13 +19,18 @@ export function SiteHeader() {
 
   const destRef = useRef<HTMLDivElement>(null);
   const svcRef = useRef<HTMLDivElement>(null);
-  const langRef = useRef<HTMLDivElement>(null);
+  /** Desktop and mobile each need their own ref — sharing one ref breaks click-outside on desktop because React keeps only the last node. */
+  const langRefDesktop = useRef<HTMLDivElement>(null);
+  const langRefMobile = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (destRef.current && !destRef.current.contains(e.target as Node)) setDestOpen(false);
-      if (svcRef.current && !svcRef.current.contains(e.target as Node)) setSvcOpen(false);
-      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangOpen(false);
+      const target = e.target as Node;
+      if (destRef.current && !destRef.current.contains(target)) setDestOpen(false);
+      if (svcRef.current && !svcRef.current.contains(target)) setSvcOpen(false);
+      const insideLang =
+        Boolean(langRefDesktop.current?.contains(target)) || Boolean(langRefMobile.current?.contains(target));
+      if (!insideLang) setLangOpen(false);
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -128,7 +133,7 @@ export function SiteHeader() {
             {/* Right: language, theme, agent */}
             <div className="flex items-center gap-3">
               {/* Language switcher */}
-              <div className="relative" ref={langRef}>
+              <div className="relative" ref={langRefDesktop}>
                 <button
                   type="button"
                   className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background/60 px-2.5 py-1 text-[0.82rem] font-semibold text-foreground hover:border-primary/60 transition-colors"
@@ -353,7 +358,7 @@ export function SiteHeader() {
 
           <div className="flex flex-col gap-4 pt-4">
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              <div className="relative" ref={langRef}>
+              <div className="relative" ref={langRefMobile}>
                 <button
                   type="button"
                   onClick={() => setLangOpen(v => !v)}

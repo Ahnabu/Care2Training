@@ -14,6 +14,14 @@
     "blogs": "Blogs",
     "contact": "Contact"
   },
+  "studyDestinationsPage": {
+    "listingDescription": "Parcourez les destinations : exigences, calendrier et accompagnement.",
+    "viewDetails": "Voir les détails",
+    "topBadge": "Populaire",
+    "guideEyebrow": "Guide destination",
+    "ctaPrimary": "Prendre rendez-vous",
+    "ctaSecondary": "Découvrir les services"
+  },
   "language": {
     "label": "Langue",
     "english": "Anglais",

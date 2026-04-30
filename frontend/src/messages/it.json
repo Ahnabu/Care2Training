@@ -14,6 +14,14 @@
     "blogs": "Blog",
     "contact": "Contatti"
   },
+  "studyDestinationsPage": {
+    "listingDescription": "Sfoglia le destinazioni e scopri requisiti, tempistiche e il supporto che offriamo.",
+    "viewDetails": "Vedi dettagli",
+    "topBadge": "Consigliato",
+    "guideEyebrow": "Guida alla destinazione",
+    "ctaPrimary": "Prenota appuntamento",
+    "ctaSecondary": "Scopri i servizi"
+  },
   "language": {
     "label": "Lingua",
     "english": "Inglese",

@@ -14,6 +14,14 @@
     "blogs": "Blogid",
     "contact": "Kontakt"
   },
+  "studyDestinationsPage": {
+    "listingDescription": "Sirvige sihtkohti – nõuded, ajakava ja meie tugi.",
+    "viewDetails": "Vaata üksikasju",
+    "topBadge": "Populaarne",
+    "guideEyebrow": "Sihtkoha juhend",
+    "ctaPrimary": "Broneeri kohtumine",
+    "ctaSecondary": "Teenused"
+  },
   "language": {
     "label": "Keel",
     "english": "Inglise",

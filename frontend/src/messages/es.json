@@ -14,6 +14,14 @@
     "blogs": "Blogs",
     "contact": "Contacto"
   },
+  "studyDestinationsPage": {
+    "listingDescription": "Explora destinos: requisitos, plazos y el apoyo que ofrecemos.",
+    "viewDetails": "Ver detalles",
+    "topBadge": "Destacado",
+    "guideEyebrow": "Guía del destino",
+    "ctaPrimary": "Reservar cita",
+    "ctaSecondary": "Ver servicios"
+  },
   "language": {
     "label": "Idioma",
     "english": "Inglés",

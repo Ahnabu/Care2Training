@@ -14,6 +14,14 @@
     "blogs": "Блогове",
     "contact": "Контакти"
   },
+  "studyDestinationsPage": {
+    "listingDescription": "Разгледайте дестинации – изисквания, срокове и нашата подкрепа.",
+    "viewDetails": "Вижте детайли",
+    "topBadge": "Топ дестинация",
+    "guideEyebrow": "Пътеводител",
+    "ctaPrimary": "Запазете час",
+    "ctaSecondary": "Услуги"
+  },
   "language": {
     "label": "Език",
     "english": "Английски",
