@@ -27,7 +27,7 @@ export function AboutPreviewSection() {
           />
 
           {/* Main Image Container */}
-          <div className="relative w-full max-w-[280px] sm:max-w-[460px] aspect-[4/5] rounded-[24px] overflow-hidden shadow-[var(--shadow-card)] z-10 mx-auto lg:ml-auto lg:mr-0">
+           <div className="relative w-full max-w-70 sm:max-w-115 aspect-4/5 rounded-3xl overflow-hidden shadow-(--shadow-card) z-10 mx-auto lg:ml-auto lg:mr-0">
              <Image
                 src="/care2training/assets/about.KWabaQlx_ad538549ec.jpg"
                 alt={t("aboutPreview.title")}
@@ -35,7 +35,7 @@ export function AboutPreviewSection() {
                 sizes="(max-width: 1024px) 100vw, 460px"
                 className="object-cover"
              />
-             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+             <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
           </div>
 
           <div className="w-full flex flex-col items-center gap-4 mt-6 lg:mt-0 lg:block">
@@ -45,7 +45,7 @@ export function AboutPreviewSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative lg:absolute lg:top-12 lg:-left-12 p-4 sm:p-5 glass-panel rounded-[20px] w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[260px] flex gap-4 items-start z-20 shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+              className="relative lg:absolute lg:top-12 lg:left-32 p-4 sm:p-5 rounded-[20px] w-full max-w-70 sm:max-w-80 lg:max-w-65 flex gap-4 items-start z-20 border border-white/60 bg-linear-to-br from-sky-50/95 via-white/90 to-sky-100/85 shadow-lg backdrop-blur-2xl dark:border-white/10 dark:from-slate-950/80 dark:via-slate-900/72 dark:to-slate-900/58 dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
             >
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#e8f0fe] text-[#1967d2] dark:bg-blue-500/20 dark:text-blue-300 flex items-center justify-center shrink-0">
                 <Home size={20} className="sm:w-6 sm:h-6" />
@@ -62,7 +62,7 @@ export function AboutPreviewSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="relative lg:absolute lg:bottom-16 lg:-right-8 p-4 sm:p-5 glass-panel rounded-[20px] w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[260px] flex gap-4 items-start z-20 shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+              className="relative lg:absolute lg:bottom-16 lg:right-6 p-4 sm:p-5 glass-panel rounded-[20px] w-full max-w-70 sm:max-w-80 lg:max-w-65 flex gap-4 items-start z-20 shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
             >
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#f3e8fd] text-[#7a1abf] dark:bg-purple-500/20 dark:text-purple-300 flex items-center justify-center shrink-0">
                 <GraduationCap size={20} className="sm:w-6 sm:h-6" />

@@ -10,19 +10,19 @@ export function HeroSection() {
   const t = useTranslations();
   
   return (
-    <section className="grid items-center gap-[56px] md:gap-[72px] lg:grid-cols-[1.03fr_1fr] py-[40px] md:py-[48px] lg:py-[56px] pb-[20px] md:pb-[28px] lg:pb-[36px]">
+    <section className="grid items-center gap-6 md:gap-8 lg:gap-12 lg:grid-cols-[1.03fr_1fr] py-[40px] md:py-[48px] lg:py-[56px] pb-[20px] md:pb-[28px] lg:pb-[36px]">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65, ease: "easeOut", delay: 0.08 }}
-        className="grid gap-7"
+        className="grid gap-5"
       >
-        <h1 className="font-display text-[clamp(2.5rem,11vw,5.75rem)] leading-[0.93] tracking-[-0.05em] max-w-[12ch] text-foreground font-bold break-words sm:break-normal uppercase">
+        <h1 className="font-display text-[clamp(2rem,9vw,4.5rem)] leading-[0.93] tracking-[-0.05em] text-foreground font-bold break-words sm:break-normal uppercase">
           {t("hero.title1")} <br />
           <span className="gradient-text">{t("hero.title2")}</span>
         </h1>
         <TrustBar />
-        <p className="text-[clamp(1.25rem,2.1vw,2.05rem)] leading-[1.18] text-muted-foreground max-w-[25ch]">
+        <p className="text-[clamp(1rem,1.8vw,1.5rem)] leading-[1.2] text-muted-foreground">
           {t("hero.subtitle")}
         </p>
         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3.5 mt-2">

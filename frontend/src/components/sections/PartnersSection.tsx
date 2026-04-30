@@ -1,6 +1,6 @@
 import { fetchUniversityPartners, partnerImageUrl } from "@/lib/partnersApi";
 import { PartnersSlider } from "./PartnersSlider";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 export async function PartnersSection({
   locale,
@@ -9,7 +9,7 @@ export async function PartnersSection({
   locale: string;
   className?: string;
 }>) {
-  const t = useTranslations();
+  const t = await getTranslations();
   const partners = await fetchUniversityPartners(locale);
   const items = partners
     .filter((p) => p.image)
@@ -40,17 +40,17 @@ export async function PartnersSection({
           aria-hidden="true"
         >
           <span className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full bg-primary shadow-[0_0_0_6px_rgba(39,71,202,0.12)]" />
-          <span className="h-px flex-1 max-w-[min(420px,72vw)] bg-gradient-to-r from-primary/85 via-primary/35 to-transparent" />
+          <span className="h-px flex-1 max-w-[min(420px,72vw)] bg-linear-to-r from-primary/85 via-primary/35 to-transparent" />
         </div>
       </header>
 
-      <div className="relative rounded-[28px] border border-border/80 bg-card shadow-[var(--shadow-soft)]">
+      <div className="relative rounded-[28px] border border-border/80 bg-card shadow-(--shadow-soft)">
         <div
           className="pointer-events-none absolute inset-0 overflow-hidden rounded-[28px]"
           aria-hidden="true"
         >
           <div className="absolute -left-24 top-10 h-64 w-64 rounded-full bg-primary/[0.07] blur-3xl" />
-          <div className="absolute -right-28 bottom-0 h-72 w-72 rounded-full bg-indigo-400/[0.09] blur-3xl" />
+          <div className="absolute -right-28 bottom-0 h-72 w-72 rounded-full bg-indigo-400/9 blur-3xl" />
         </div>
 
 

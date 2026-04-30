@@ -3,9 +3,6 @@ import { BookAppointmentForm } from "@/components/book-appointment/BookAppointme
 import { CTABand } from "@/components/sections/CTABand";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { TrustBar } from "@/components/sections/TrustBar";
-import { OfficesMini } from "@/components/sections/OfficesMini";
-import { PageHeader } from "@/components/layout/PageHeader";
 
 export const metadata: Metadata = {
   title: "Book Appointment | Care2 Training",
@@ -15,15 +12,7 @@ export const metadata: Metadata = {
 export default function BookAppointmentPage() {
   return (
     <main className="mx-auto w-full max-w-[1100px] px-6 md:px-10 py-12 md:py-16">
-      <PageHeader
-        title="Book an appointment"
-        description="A short, step-by-step form designed to be easy to finish."
-      />
-
-      <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_0.75fr] lg:items-start">
-        <TrustBar />
-        <OfficesMini className="lg:mt-1" />
-      </div>
+      {/* The form posts to /api/book-appointment, and that Next.js route can forward to the Express backend when BACKEND_API_URL is set. */}
       <BookAppointmentForm />
 
       <TestimonialsSection showHeading={false} className="py-0 md:py-0 mt-12" />

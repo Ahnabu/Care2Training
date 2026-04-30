@@ -1,6 +1,8 @@
 import { HomeHero } from "@/components/home/HomeHero";
 
-export default function LocaleHomePage({ params }: Readonly<{ params: { locale: string } }>) {
-  return <HomeHero locale={params.locale} />;
-}
+type Props = { params: Promise<{ locale: string }> };
 
+export default async function LocaleHomePage({ params }: Props) {
+  const { locale } = await params;
+  return <HomeHero locale={locale} />;
+}

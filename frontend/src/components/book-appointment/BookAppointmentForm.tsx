@@ -1,267 +1,365 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
-type StepId = "destination" | "study" | "contact" | "review";
+const studyDestinations = [
+  "Study in Canada",
+  "Study in Ireland",
+  "Study in Germany",
+  "Study in Italy",
+  "Study in Malaysia",
+  "Study in France",
+  "Study in Poland",
+  "Study in Croatia",
+  "Study in Australia",
+  "Study in UK",
+  "Study in Hungary",
+  "Study in USA",
+  "Study in Lithuania",
+  "Study in Latvia",
+  "Study in Malta",
+  "Study in Cyprus",
+] as const;
 
-const destinations = [
-  { id: "uk", label: "United Kingdom" },
-  { id: "canada", label: "Canada" },
-  { id: "italy", label: "Italy" },
-  { id: "australia", label: "Australia" },
+const consultationTypes = [
+  "Online Meeting",
+  "Phone Call",
+  "Office Visit",
 ] as const;
 
 export function BookAppointmentForm() {
-  const steps = useMemo<StepId[]>(() => ["destination", "study", "contact", "review"], []);
-  const [step, setStep] = useState<StepId>("destination");
-
-  const stepIndex = useMemo(() => steps.indexOf(step), [step, steps]);
-  const progress = useMemo(() => Math.round(((stepIndex + 1) / steps.length) * 100), [stepIndex, steps.length]);
-
   const [form, setForm] = useState({
-    destination: "" as string,
-    course: "",
-    english: "",
     fullName: "",
     email: "",
     phone: "",
-    consultationType: "Online Meeting" as "Online Meeting" | "Phone Call" | "Office Visit",
+    destination: "",
+    course: "",
+    english: "",
+    subjects: "",
+    consultationType: "",
+    inquiry: "",
   });
 
-  const canNext = useMemo(() => {
-    if (step === "destination") return Boolean(form.destination);
-    if (step === "study") return Boolean(form.course);
-    if (step === "contact") return Boolean(form.fullName && form.email && form.phone);
-    return true;
-  }, [form, step]);
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  function goNext() {
-    if (!canNext) return;
-    const next = steps[stepIndex + 1];
-    if (next) setStep(next);
-  }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setForm((f) => ({ ...f, [name]: value }));
+  };
 
-  function goBack() {
-    const prev = steps[stepIndex - 1];
-    if (prev) setStep(prev);
-  }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitError(null);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/book-appointment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const result = (await response.json().catch(() => null)) as
+        | { ok?: boolean; message?: string }
+        | null;
+
+      if (!response.ok || !result?.ok) {
+        throw new Error(result?.message || "Unable to submit the form right now.");
+      }
+
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 3000);
+      setForm({
+        fullName: "",
+        email: "",
+        phone: "",
+        destination: "",
+        course: "",
+        english: "",
+        subjects: "",
+        consultationType: "",
+        inquiry: "",
+      });
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Unable to submit the form right now.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const isFormValid =
+    form.fullName.trim() &&
+    form.email.trim() &&
+    form.phone.trim() &&
+    form.destination &&
+    form.subjects.trim() &&
+    form.consultationType &&
+    form.inquiry.trim();
 
   return (
-    <section className="mt-10 rounded-3xl border border-border bg-card shadow-sm overflow-hidden">
-      <div className="p-6 md:p-8 border-b border-border/70">
-        <div className="flex items-center justify-between gap-4">
-          <p className="text-sm font-bold uppercase tracking-[0.12em] text-muted-foreground">
-            Step {stepIndex + 1} of {steps.length}
+    <section className="py-4 md:py-10">
+      <div className="container mx-auto px-4 md:px-6">
+        {/* Header */}
+        <div className="mb-12">
+          <h1 className="font-display text-4xl md:text-5xl font-bold tracking-[-0.02em] mb-4">
+            Book an appointment
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
+            A short, step-by-step form designed to be easy to finish.
           </p>
-          <p className="text-sm font-semibold text-muted-foreground">{progress}%</p>
         </div>
-        <div className="mt-3 h-2 rounded-full bg-muted">
-          <div className="h-2 rounded-full bg-primary transition-[width] duration-300" style={{ width: `${progress}%` }} />
-        </div>
-      </div>
 
-      <div className="p-6 md:p-8">
-        {step === "destination" ? (
-          <div className="grid gap-6">
-            <div>
-              <h2 className="font-display text-2xl font-bold tracking-[-0.03em]">Where do you want to study?</h2>
-              <p className="mt-2 text-muted-foreground">Pick a destination to start. This reduces friction and increases completion.</p>
-            </div>
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Form Section - Takes 2 columns on large screens */}
+          <div className="lg:col-span-2">
+              {/* Form */}
+            <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
+              {/* Full Name and Email */}
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-2">
+                  <label htmlFor="fullName" className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                    Full Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="fullName"
+                    name="fullName"
+                    type="text"
+                    value={form.fullName}
+                    onChange={handleChange}
+                    required
+                    className="h-12 rounded-xl border border-border bg-background px-4 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition"
+                    placeholder=""
+                  />
+                </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              {destinations.map((d) => (
-                <button
-                  key={d.id}
-                  type="button"
-                  onClick={() => setForm((f) => ({ ...f, destination: d.label }))}
-                  className={cn(
-                    "text-left rounded-2xl border border-border/70 p-5 shadow-sm transition hover:border-border",
-                    "bg-background/60 backdrop-blur supports-[backdrop-filter]:bg-background/40",
-                    form.destination === d.label ? "ring-2 ring-primary/40 border-border" : ""
-                  )}
-                >
-                  <p className="font-display text-xl font-bold tracking-[-0.02em] text-foreground">{d.label}</p>
-                  <p className="mt-1.5 text-[0.98rem] text-muted-foreground">View requirements, timeline, and a guided plan.</p>
-                </button>
-              ))}
-            </div>
+                <div className="grid gap-2">
+                  <label htmlFor="email" className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                    Email <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                    className="h-12 rounded-xl border border-border bg-background px-4 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition"
+                    placeholder=""
+                  />
+                </div>
+              </div>
 
-            <div className="rounded-2xl bg-muted p-4 text-[0.98rem] text-muted-foreground">
-              <span className="font-semibold text-foreground">Social proof:</span> Join hundreds of students who move forward each month with a clear checklist.
+              {/* Phone and Study Destination */}
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-2">
+                  <label htmlFor="phone" className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                    Phone/WhatsApp <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={form.phone}
+                    onChange={handleChange}
+                    required
+                    className="h-12 rounded-xl border border-border bg-background px-4 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition"
+                    placeholder=""
+                  />
+                </div>
+
+                <div className="grid gap-2">
+                  <label htmlFor="destination" className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                    Study Destination <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="destination"
+                    name="destination"
+                    value={form.destination}
+                    onChange={handleChange}
+                    required
+                    className="h-12 rounded-2xl border border-border bg-background px-4 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition"
+                  >
+                    <option value="">Choose a destination</option>
+                    {studyDestinations.map((dest) => (
+                      <option key={dest} value={dest}>
+                        {dest}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Course and English */}
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-2">
+                  <label htmlFor="course" className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                    Course of Study
+                  </label>
+                  <input
+                    id="course"
+                    name="course"
+                    type="text"
+                    value={form.course}
+                    onChange={handleChange}
+                    className="h-12 rounded-xl border border-border bg-background px-4 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition"
+                    placeholder=""
+                  />
+                </div>
+
+                <div className="grid gap-2">
+                  <label htmlFor="english" className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                    English Test & Score
+                  </label>
+                  <input
+                    id="english"
+                    name="english"
+                    type="text"
+                    value={form.english}
+                    onChange={handleChange}
+                    className="h-12 rounded-xl border border-border bg-background px-4 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition"
+                    placeholder="e.g., IELTS 6.5"
+                  />
+                </div>
+              </div>
+
+              {/* Subjects and Consultation */}
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-2">
+                  <label htmlFor="subjects" className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                    Preferred Subjects <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="subjects"
+                    name="subjects"
+                    type="text"
+                    value={form.subjects}
+                    onChange={handleChange}
+                    required
+                    className="h-12 rounded-xl border border-border bg-background px-4 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition"
+                    placeholder=""
+                  />
+                </div>
+
+                <div className="grid gap-2">
+                  <label htmlFor="consultationType" className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                    Consultation Type <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="consultationType"
+                    name="consultationType"
+                    value={form.consultationType}
+                    onChange={handleChange}
+                    required
+                    className="h-12 rounded-2xl border border-border bg-background px-4 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition"
+                  >
+                    <option value="">Choose type</option>
+                    {consultationTypes.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Inquiry Textarea */}
+              <div className="grid gap-2">
+                <label htmlFor="inquiry" className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                  Tell us more <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="inquiry"
+                  name="inquiry"
+                  value={form.inquiry}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  className="rounded-xl border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition resize-none"
+                  placeholder=""
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={!isFormValid || isSubmitting}
+                className={cn(
+                  "w-full h-12 rounded-xl font-bold uppercase tracking-wider transition-all",
+                  isFormValid && !isSubmitting
+                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                    : "bg-muted text-muted-foreground cursor-not-allowed"
+                )}
+              >
+                {isSubmitting ? "Submitting..." : submitted ? "✓ Submitted" : "Get Consultation"}
+              </button>
+
+              {submitError ? (
+                <p className="text-sm font-medium text-red-400" role="alert">
+                  {submitError}
+                </p>
+              ) : null}
+            </form>
+          </div>
+
+          {/* Sidebar - Contact & Offices */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-6 space-y-8">
+              {/* Contact Card */}
+              <div className="rounded-2xl border border-border bg-card/50 backdrop-blur p-6 md:p-8">
+                <h3 className="font-display text-lg font-bold uppercase tracking-wider text-foreground mb-6">
+                  Contact
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-1">Email</p>
+                    <a href="mailto:info@care2training.com" className="text-foreground font-semibold hover:text-primary transition">
+                      info@care2training.com
+                    </a>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">Phone</p>
+                    <div className="space-y-1">
+                      <a href="tel:+8801842497766" className="block text-foreground font-semibold hover:text-primary transition">
+                        +880 1842 497 766
+                      </a>
+                      <a href="tel:+442035762072" className="block text-foreground font-semibold hover:text-primary transition">
+                        +44 0203 576 2072
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Offices Card */}
+              <div className="rounded-2xl border border-border bg-card/50 backdrop-blur p-6 md:p-8">
+                <h3 className="font-display text-lg font-bold uppercase tracking-wider text-foreground mb-6">
+                  Offices
+                </h3>
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">Bangladesh</p>
+                    <p className="text-sm text-foreground leading-relaxed">
+                      36, Garib-E-Newaz Avenue, Level-3, Sector-13, Uttara, Dhaka-1230
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">UK</p>
+                    <p className="text-sm text-foreground leading-relaxed">
+                      Unit 301, 3rd Floor, 7 Kirkdale Road, Bushwood, London E11 1HP
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        ) : null}
-
-        {step === "study" ? (
-          <div className="grid gap-5">
-            <div>
-              <h2 className="font-display text-2xl font-bold tracking-[-0.03em]">Your study preference</h2>
-              <p className="mt-2 text-muted-foreground">A few details help us route you to the right advisor.</p>
-            </div>
-
-            <div className="grid gap-4">
-              <div className="grid gap-2">
-                <label className="text-sm font-bold text-foreground" htmlFor="course">
-                  Preferred course of study
-                </label>
-                <input
-                  id="course"
-                  value={form.course}
-                  onChange={(e) => setForm((f) => ({ ...f, course: e.target.value }))}
-                  className="h-11 w-full rounded-xl border border-border bg-background px-3 text-foreground"
-                  placeholder="e.g., Nursing, Business, Computer Science"
-                />
-              </div>
-
-              <div className="grid gap-2">
-                <label className="text-sm font-bold text-foreground" htmlFor="english">
-                  English proficiency test & score (optional)
-                </label>
-                <input
-                  id="english"
-                  value={form.english}
-                  onChange={(e) => setForm((f) => ({ ...f, english: e.target.value }))}
-                  className="h-11 w-full rounded-xl border border-border bg-background px-3 text-foreground"
-                  placeholder="e.g., IELTS 6.5"
-                />
-              </div>
-
-              <div className="grid gap-2">
-                <label className="text-sm font-bold text-foreground" htmlFor="consultation">
-                  Consultation type
-                </label>
-                <select
-                  id="consultation"
-                  value={form.consultationType}
-                  onChange={(e) => setForm((f) => ({ ...f, consultationType: e.target.value as any }))}
-                  className="h-11 w-full rounded-xl border border-border bg-background px-3 text-foreground"
-                >
-                  <option>Online Meeting</option>
-                  <option>Phone Call</option>
-                  <option>Office Visit</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        ) : null}
-
-        {step === "contact" ? (
-          <div className="grid gap-5">
-            <div>
-              <h2 className="font-display text-2xl font-bold tracking-[-0.03em]">Your contact details</h2>
-              <p className="mt-2 text-muted-foreground">We’ll use these to confirm your appointment.</p>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="grid gap-2 sm:col-span-2">
-                <label className="text-sm font-bold text-foreground" htmlFor="fullName">
-                  Full name
-                </label>
-                <input
-                  id="fullName"
-                  value={form.fullName}
-                  onChange={(e) => setForm((f) => ({ ...f, fullName: e.target.value }))}
-                  className="h-11 w-full rounded-xl border border-border bg-background px-3 text-foreground"
-                  placeholder="Your name"
-                />
-              </div>
-
-              <div className="grid gap-2">
-                <label className="text-sm font-bold text-foreground" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                  className="h-11 w-full rounded-xl border border-border bg-background px-3 text-foreground"
-                  placeholder="you@example.com"
-                />
-              </div>
-
-              <div className="grid gap-2">
-                <label className="text-sm font-bold text-foreground" htmlFor="phone">
-                  Phone / WhatsApp
-                </label>
-                <input
-                  id="phone"
-                  value={form.phone}
-                  onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-                  className="h-11 w-full rounded-xl border border-border bg-background px-3 text-foreground"
-                  placeholder="+880 ..."
-                />
-              </div>
-            </div>
-          </div>
-        ) : null}
-
-        {step === "review" ? (
-          <div className="grid gap-6">
-            <div>
-              <h2 className="font-display text-2xl font-bold tracking-[-0.03em]">Review</h2>
-              <p className="mt-2 text-muted-foreground">Confirm your details. (Submission wiring comes later.)</p>
-            </div>
-
-            <div className="grid gap-3 rounded-2xl border border-border bg-background p-5">
-              <Row label="Destination" value={form.destination} />
-              <Row label="Course" value={form.course} />
-              <Row label="English" value={form.english || "—"} />
-              <Row label="Consultation" value={form.consultationType} />
-              <Row label="Name" value={form.fullName} />
-              <Row label="Email" value={form.email} />
-              <Row label="Phone" value={form.phone} />
-            </div>
-
-            <div className="rounded-2xl bg-muted p-4 text-[0.98rem] text-muted-foreground">
-              <span className="font-semibold text-foreground">Reassurance:</span> Your information is used only to confirm your appointment.
-            </div>
-
-            <button
-              type="button"
-              className="inline-flex h-11 items-center justify-center rounded-xl bg-primary px-6 font-bold text-primary-foreground hover:bg-primary/90"
-            >
-              Submit (UI only)
-            </button>
-          </div>
-        ) : null}
-
-        <div className="mt-10 flex items-center justify-between gap-3">
-          <button
-            type="button"
-            onClick={goBack}
-            className={cn(
-              "inline-flex h-11 items-center justify-center rounded-xl border border-border bg-background px-5 font-bold text-foreground hover:border-border/80",
-              stepIndex === 0 ? "invisible" : ""
-            )}
-          >
-            Back
-          </button>
-
-          <button
-            type="button"
-            onClick={goNext}
-            disabled={!canNext || step === "review"}
-            className={cn(
-              "inline-flex h-11 items-center justify-center rounded-xl bg-primary px-6 font-bold text-primary-foreground hover:bg-primary/90",
-              !canNext || step === "review" ? "opacity-50 cursor-not-allowed hover:bg-primary" : ""
-            )}
-          >
-            Next
-          </button>
         </div>
       </div>
     </section>
   );
 }
-
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-start justify-between gap-4">
-      <p className="text-sm font-bold uppercase tracking-[0.12em] text-muted-foreground">{label}</p>
-      <p className="text-[1rem] font-semibold text-foreground">{value}</p>
-    </div>
-  );
-}
-
