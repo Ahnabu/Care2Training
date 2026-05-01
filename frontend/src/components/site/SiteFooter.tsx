@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";
-import { offices, siteContact } from "@/content/offices";
+import { siteContact } from "@/content/offices";
 import { Mail } from "lucide-react";
 
 const quickLinks = [
@@ -29,10 +29,20 @@ export function SiteFooter() {
     return `/${locale}${href === "/" ? "" : href}`;
   }
 
+  const businessHours = [
+    { country: "UK", hours: "Monday to Friday, 9am – 5pm" },
+    { country: "Italy", hours: "Monday to Friday, 9am – 5pm" },
+    { country: "Canada", hours: "Monday to Friday, 9am – 5pm" },
+    { country: "Bulgaria", hours: "Monday to Friday, 9am – 5pm" },
+    { country: "Estonia", hours: "Monday to Friday, 9am – 5pm" },
+    { country: "Bangladesh", hours: "Saturday to Thursday, 10am – 6pm" },
+    { country: "New Zealand", hours: "Monday to Friday, 9am – 5pm" },
+  ] as const;
+
   return (
     <footer className="border-t border-border bg-background">
       <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 md:px-10 lg:px-12 py-10 lg:py-12">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1.2fr]">
           <div className="grid gap-3">
             <p className="font-display text-xl font-bold tracking-[-0.02em] text-foreground">Care2 Training</p>
             <p className="max-w-[52ch] text-[1rem] leading-relaxed text-muted-foreground">
@@ -76,12 +86,12 @@ export function SiteFooter() {
           </div>
 
           <div className="grid gap-3">
-            <p className="text-sm font-bold uppercase tracking-[0.12em] text-muted-foreground">Offices</p>
-            <div className="grid gap-3 text-[0.98rem] text-muted-foreground">
-              {offices.map((o) => (
-                <div key={o.country}>
-                  <p className="font-semibold text-foreground">{o.country}</p>
-                  <p>{o.address}</p>
+            <p className="text-sm font-bold uppercase tracking-[0.12em] text-muted-foreground">Business hours</p>
+            <div className="grid gap-1.5 text-[0.9rem] text-muted-foreground">
+              {businessHours.map((bh) => (
+                <div key={bh.country} className="flex items-baseline gap-2">
+                  <p className="font-semibold text-foreground text-xs tracking-wider min-w-fit">{bh.country}:</p>
+                  <p className="text-[0.85rem] leading-tight">{bh.hours}</p>
                 </div>
               ))}
             </div>

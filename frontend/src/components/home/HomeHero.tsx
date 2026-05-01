@@ -8,6 +8,7 @@ import { CTABand } from "@/components/sections/CTABand";
 import { PartnersSection } from "@/components/sections/PartnersSection";
 import { GetToKnowAboutUsSection } from "@/components/sections/GetToKnowAboutUsSection";
 import { AboutPreviewSection } from "../sections/AboutPreviewSection";
+import { OfficeLocationsSection } from "@/components/sections/OfficeLocationsSection";
 
 export function HomeHero({
   locale = "en",
@@ -31,6 +32,7 @@ export function HomeHero({
         <ProcessSteps />
         <TestimonialsSection />
         <FAQAccordion />
+        <OfficeLocationsSection />
         <CTABand />
       </div>
     </main>
