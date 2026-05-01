@@ -24,3 +24,6 @@ Refresh the public website UI so it looks modern, trustworthy, and international
 ## Inputs we still need
 The UI research table/recommendations (from Gemini) must be pasted into chat or added to the repo so we can convert it into a prioritized checklist and map each item to pages/components.
 
+## Implemented additions (reference)
+- **Study destinations + legacy CMS API:** Listing and detail pages consume `admin.care2training.com` APIs; all routed locales pass through as `lang`. Summary: **`docs/08-study-destinations-cms-integration.md`**.
+

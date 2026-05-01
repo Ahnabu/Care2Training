@@ -46,15 +46,13 @@ This file lists all public routes, their purpose, and the reusable sections/comp
 - Timeline / milestones (optional)
 
 ### Study Destinations (`/study-destinations`)
-- Filters + destination cards
-- Prominent CTA
+- Destination cards driven by **legacy API** `GET https://admin.care2training.com/api/get-countries` (sorted by `order`, “top” badge from `is_top_destination`)
+- Trust bar, offices mini, process, testimonials, FAQ, CTA band (see `StudyDestinationsListingPage.tsx`)
 
-### Study Destination detail (`/study-destinations/[slug]`)
-- Hero + quick facts
-- Requirements checklist
-- Process steps
-- FAQ
-- Lead capture form
+### Study Destination detail (`/[locale]/study-destinations/[slug]`)
+- **Content source:** `GET /api/country/{study-in-slug}?lang={locale}` — hero fields + HTML body (`page_description`); images from admin origin
+- **UI:** `DestinationCountryHero` (breadcrumb, localized book CTA, title/subtitle, BG + side images); full-width prose article (no card wrapper); `CTABand` below
+- See **`docs/08-study-destinations-cms-integration.md`** for endpoints, slug mapping, locale behavior, and the header language-switcher fix
 
 ### Services (`/services`)
 - Service cards (grid)
