@@ -43,9 +43,9 @@ export async function DestinationDetailPageContent({
         <RichContentRenderer html={pageHtml} />
       </article>
 
-      <div className="mt-16 border-t border-border/60 md:mt-24" aria-hidden />
+      <div className="mt-10 border-t border-border/60 md:mt-14" aria-hidden />
 
-      <CTABand className="mt-10 md:mt-14" primaryLabel={tPage("ctaPrimary")} secondaryLabel={tPage("ctaSecondary")} />
+      <CTABand className="mt-8 md:mt-10" primaryLabel={tPage("ctaPrimary")} secondaryLabel={tPage("ctaSecondary")} />
     </main>
   );
 }

@@ -1,4 +1,5 @@
 import type { ChildNode, Element } from "domhandler";
+import { domToReact, type DOMNode } from "html-react-parser";
 import { CheckCircle2 } from "lucide-react";
 
 function isElement(n: ChildNode): n is Element {
@@ -42,7 +43,13 @@ function extractSteps(nodes: ChildNode[]): string[] {
 
 export function TimelineList({ nodes }: Readonly<{ nodes: ChildNode[] }>) {
   const steps = extractSteps(nodes);
-  if (steps.length < 2) return null;
+  if (steps.length < 2) {
+    return (
+      <div className="study-destination-prose prose prose-neutral dark:prose-invert max-w-none">
+        {domToReact(nodes as DOMNode[])}
+      </div>
+    );
+  }
 
   return (
     <div className="not-prose my-10 rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-sky-50 p-6 shadow-sm">
