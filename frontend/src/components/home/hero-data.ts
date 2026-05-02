@@ -15,7 +15,7 @@ export const stats = [
   },
   {
     icon: University,
-    value: "50+",
+    value: "100+",
     label: "Partner Universities",
   },
   {

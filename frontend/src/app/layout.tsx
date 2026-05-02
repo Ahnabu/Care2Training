@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { FloatingWhatsAppButton } from "@/components/site/FloatingWhatsAppButton";
 
 const lexend = Lexend({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
+        <FloatingWhatsAppButton />
       </body>
     </html>
   );

@@ -9,7 +9,7 @@ export function StatsStrip() {
 
   const stats = [
     { label: t("visaSuccess"), value: "98%", icon: ShieldCheck },
-    { label: t("partners"), value: "50+", icon: Building2 },
+    { label: t("partners"), value: "100+", icon: Building2 },
     { label: t("careers"), value: "10,000+", icon: Rocket },
   ];
 

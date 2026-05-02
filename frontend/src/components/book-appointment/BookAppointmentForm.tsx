@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-const studyDestinations = [
+const defaultStudyDestinations = [
   "Study in Canada",
   "Study in Ireland",
   "Study in Germany",
@@ -44,11 +44,41 @@ export function BookAppointmentForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [countries, setCountries] = useState<string[]>(Array.from(defaultStudyDestinations));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm((f) => ({ ...f, [name]: value }));
   };
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const res = await fetch("https://admin.care2training.com/api/get-countries");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!mounted) return;
+        if (Array.isArray(data) && data.length > 0) {
+          const mapped = data
+            .map((c: unknown) => (typeof c === "string" ? c : (c as Record<string, string>)?.name || (c as Record<string, string>)?.country || (c as Record<string, string>)?.title))
+            .filter((s): s is string => typeof s === "string" && s.trim().length > 0);
+          if (mapped.length > 0) setCountries(mapped);
+        }
+      } catch (e) {
+        // keep defaults
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!submitted) return;
+    const timer = setTimeout(() => setSubmitted(false), 3000);
+    return () => clearTimeout(timer);
+  }, [submitted]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,24 +86,35 @@ export function BookAppointmentForm() {
     setIsSubmitting(true);
 
     try {
+      const payload = {
+        name: form.fullName,
+        email: form.email,
+        phone: form.phone,
+        subject: form.subjects,
+        message: form.inquiry,
+        country: form.destination,
+        study_year: form.course,
+        ielts_score: form.english,
+        con_type: form.consultationType,
+      };
+
       const response = await fetch("/api/book-appointment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
 
       const result = (await response.json().catch(() => null)) as
         | { ok?: boolean; message?: string }
         | null;
 
-      if (!response.ok || !result?.ok) {
+      if (!response.ok || (result && result.ok === false)) {
         throw new Error(result?.message || "Unable to submit the form right now.");
       }
 
       setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 3000);
       setForm({
         fullName: "",
         email: "",
@@ -186,7 +227,7 @@ export function BookAppointmentForm() {
                     className="h-12 rounded-2xl border border-border bg-background px-4 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition"
                   >
                     <option value="">Choose a destination</option>
-                    {studyDestinations.map((dest) => (
+                    {countries.map((dest) => (
                       <option key={dest} value={dest}>
                         {dest}
                       </option>
