@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -167,23 +168,167 @@
     -webkit-text-fill-color: transparent;
   }
 
+  /* ── Study destination prose: rich content overrides ── */
+
+  .study-destination-prose {
+    --tw-prose-bullets: var(--primary);
+    --tw-prose-counters: var(--primary);
+  }
+
+  /* Decorative accent on h2 */
+  .study-destination-prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    position: relative;
+    padding-left: 1rem;
+  }
+  .study-destination-prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *))::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.15em;
+    bottom: 0.15em;
+    width: 4px;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, var(--primary) 0%, color-mix(in oklab, var(--primary) 40%, #8b5cf6) 100%);
+  }
+
+  /* Subtle bottom line on h3 */
+  .study-destination-prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid color-mix(in oklab, var(--primary) 18%, transparent);
+  }
+
+  /* List items spacing */
+  .study-destination-prose :where(li):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    margin-top: 0.35em;
+    margin-bottom: 0.35em;
+  }
+
+  /* Link hover transition */
+  .study-destination-prose :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  }
+  .study-destination-prose :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover {
+    text-decoration-color: var(--primary);
+  }
+
+  /* Blockquote callout */
+  .study-destination-prose :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    border-left-color: var(--primary);
+    border-left-width: 4px;
+    background: color-mix(in oklab, var(--primary) 6%, transparent);
+    border-radius: 0 0.75rem 0.75rem 0;
+    padding: 1rem 1.25rem;
+    font-style: normal;
+  }
+
+  /* Table wrapper */
+  .study-destination-prose .study-destination-table-wrap {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+    background: color-mix(in oklab, var(--muted) 35%, transparent);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+
+  .dark .study-destination-prose .study-destination-table-wrap {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .study-destination-prose .study-destination-table-wrap table {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   .study-destination-prose table {
     width: 100%;
+    min-width: min(100%, 520px);
     border-collapse: collapse;
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
     font-size: 0.95rem;
   }
 
+  .study-destination-prose thead {
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+  }
+
+  .study-destination-prose tbody tr:nth-child(even) {
+    background: color-mix(in oklab, var(--muted) 25%, transparent);
+  }
+
   .study-destination-prose td,
   .study-destination-prose th {
-    border: 1px solid var(--border);
-    padding: 0.5rem 0.75rem;
+    border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+    padding: 0.65rem 0.85rem;
     vertical-align: top;
+  }
+
+  .study-destination-prose th {
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .study-destination-prose td p,
+  .study-destination-prose th p {
+    margin: 0;
+  }
+
+  .study-destination-prose td p + p,
+  .study-destination-prose th p + p {
+    margin-top: 0.35rem;
   }
 
   .study-destination-prose figure {
     margin: 1rem 0;
+  }
+
+  /* Prominent inline CTA migrated from Elementor banner headings */
+  .study-destination-inline-cta {
+    margin: 2rem 0;
+    border-radius: 0.875rem;
+    padding: 1rem 1.25rem;
+    text-align: center;
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--primary) 88%, transparent) 0%,
+      color-mix(in oklab, var(--primary) 65%, #1e3a5f) 100%
+    );
+    border: 1px solid color-mix(in oklab, var(--primary) 45%, transparent);
+    box-shadow:
+      0 8px 24px color-mix(in oklab, var(--primary) 22%, transparent),
+      inset 0 1px 0 color-mix(in oklab, #fff 18%, transparent);
+  }
+
+  .dark .study-destination-inline-cta {
+    box-shadow:
+      0 8px 28px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 color-mix(in oklab, #fff 8%, transparent);
+  }
+
+  .study-destination-inline-cta__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--primary-foreground, #fff) !important;
+    text-decoration: none !important;
+    text-underline-offset: 0;
+    transition: transform 0.15s ease, filter 0.15s ease;
+  }
+
+  .study-destination-inline-cta__link:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+  }
+
+  .study-destination-inline-cta__link strong {
+    color: inherit !important;
+    font-weight: inherit;
   }
 
   .blog-content {

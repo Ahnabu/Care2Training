@@ -16,7 +16,7 @@ export function CTABand({
   showLegalLinks?: boolean;
 }>) {
   return (
-    <section className={`py-10 md:py-16 ${className ?? ""}`}>
+    <section className={`${className ?? ""}`}>
       <div className="relative overflow-hidden rounded-[30px] border border-border bg-card p-6 sm:p-8 md:p-10 shadow-sm">
         <div
           className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent"
