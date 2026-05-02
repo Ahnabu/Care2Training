@@ -136,11 +136,29 @@ export async function fetchBlogPage(page = 1) {
 }
 
 export async function fetchBlogs() {
-  const { posts } = await fetchBlogPage(1);
-  return posts;
+  const { posts, meta } = await fetchBlogPage(1);
+  if (!meta || meta.last_page <= 1) return posts;
+
+  // Fetch remaining pages in parallel
+  const pageNumbers = Array.from({ length: meta.last_page - 1 }, (_, i) => i + 2);
+  const additionalPages = await Promise.all(pageNumbers.map((page) => fetchBlogPage(page)));
+  return [...posts, ...additionalPages.flatMap((p) => p.posts)];
 }
 
 export async function fetchBlogBySlug(slug: string) {
-  const posts = await fetchBlogs();
-  return posts.find((post) => post.slug === slug) ?? null;
+  // First check page 1 (most common case)
+  const { posts: firstPagePosts, meta } = await fetchBlogPage(1);
+  const found = firstPagePosts.find((post) => post.slug === slug);
+  if (found) return found;
+
+  // If there are more pages, iterate through them
+  if (meta && meta.last_page > 1) {
+    for (let page = 2; page <= meta.last_page; page++) {
+      const { posts } = await fetchBlogPage(page);
+      const match = posts.find((post) => post.slug === slug);
+      if (match) return match;
+    }
+  }
+
+  return null;
 }

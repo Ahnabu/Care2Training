@@ -60,7 +60,10 @@ export function BookAppointmentForm() {
         const data = await res.json();
         if (!mounted) return;
         if (Array.isArray(data) && data.length > 0) {
-          setCountries(data.map((c: any) => (typeof c === "string" ? c : c.name || c.country || c.title)));
+          const mapped = data
+            .map((c: unknown) => (typeof c === "string" ? c : (c as Record<string, string>)?.name || (c as Record<string, string>)?.country || (c as Record<string, string>)?.title))
+            .filter((s): s is string => typeof s === "string" && s.trim().length > 0);
+          if (mapped.length > 0) setCountries(mapped);
         }
       } catch (e) {
         // keep defaults
@@ -70,6 +73,12 @@ export function BookAppointmentForm() {
       mounted = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (!submitted) return;
+    const timer = setTimeout(() => setSubmitted(false), 3000);
+    return () => clearTimeout(timer);
+  }, [submitted]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -89,7 +98,7 @@ export function BookAppointmentForm() {
         con_type: form.consultationType,
       };
 
-      const response = await fetch("https://admin.care2training.com/api/book-appointment", {
+      const response = await fetch("/api/book-appointment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -106,7 +115,6 @@ export function BookAppointmentForm() {
       }
 
       setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 3000);
       setForm({
         fullName: "",
         email: "",

@@ -32,7 +32,7 @@ export default function ContactFormClient() {
     setErrors({});
     setSuccess("");
     try {
-      const res = await fetch("https://admin.care2training.com/api/contact-us", {
+      const res = await fetch("/api/contact-us", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 export default function AgentRegistrationForm() {
@@ -39,7 +39,7 @@ export default function AgentRegistrationForm() {
         message: form.message,
       };
 
-      const res = await fetch("https://admin.care2training.com/api/agents", {
+      const res = await fetch("/api/agents", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -52,7 +52,6 @@ export default function AgentRegistrationForm() {
 
       setSubmitted(true);
       setForm({ name: "", email: "", phone: "", company: "", designation: "", country: "", message: "" });
-      setTimeout(() => setSubmitted(false), 3000);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Submission failed");
     } finally {
@@ -60,7 +59,13 @@ export default function AgentRegistrationForm() {
     }
   };
 
-  const isValid = form.name.trim() && form.email.trim() && form.phone.trim();
+  const isValid = Boolean(form.name.trim() && form.email.trim() && form.phone.trim());
+
+  useEffect(() => {
+    if (!submitted) return;
+    const timer = setTimeout(() => setSubmitted(false), 3000);
+    return () => clearTimeout(timer);
+  }, [submitted]);
 
   return (
     <section className="py-6 md:py-12">

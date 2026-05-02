@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft, CalendarDays, Sparkles } from "lucide-react";
+import DOMPurify from "isomorphic-dompurify";
 import { LocaleLink } from "@/components/i18n/LocaleLink";
 import { blogDate, blogExcerpt, blogImageUrl, fetchBlogBySlug, fetchBlogs, stripHtml } from "@/lib/blogsApi";
 
@@ -30,7 +31,8 @@ export default async function BlogDetailPage({ params }: Props) {
   if (!post) notFound();
 
   const summary = stripHtml(post.description ?? post.meta_description ?? "");
-  const content = post.description ?? post.meta_description ?? "";
+  const rawContent = post.description ?? post.meta_description ?? "";
+  const content = DOMPurify.sanitize(rawContent, { USE_PROFILES: { html: true } });
   const publishedDate = blogDate(post.created_at);
   const categoryName = post.category?.name;
 
