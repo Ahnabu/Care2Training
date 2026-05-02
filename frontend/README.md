@@ -16,6 +16,14 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Environment Variables
+
+See `.env.example` for all available configuration. Create `.env.local` to override defaults:
+
+- `BACKEND_API_URL` — Backend API for form submissions (contact, book appointment, agent registration)
+- `NEXT_PUBLIC_CARE2_ADMIN_ORIGIN` — Legacy CMS origin for study destinations, blogs, partners, and asset URLs
+- `NEXT_PUBLIC_WHATSAPP_URL` — WhatsApp contact link (floating button)
+
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

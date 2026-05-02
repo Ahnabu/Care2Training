@@ -13,7 +13,8 @@ type Props = { searchParams: Promise<{ page?: string }> };
 
 export default async function BlogsPage({ searchParams }: Props) {
   const params = await searchParams;
-  const currentPage = Math.max(1, parseInt(params.page ?? "1", 10));
+  const parsedPage = Number.parseInt(params.page ?? "1", 10);
+  const currentPage = Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
   const { posts, meta } = await fetchBlogPage(currentPage);
   const featured = posts.slice(0, 2);
   const remainingPosts = posts.slice(2);

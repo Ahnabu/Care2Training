@@ -5,6 +5,8 @@ import { locales } from "@/i18n/routing";
 
 type Props = Readonly<{ params: Promise<{ locale: string; slug: string }> }>;
 
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const slugs = await fetchDestinationRouteSlugs();
   return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));

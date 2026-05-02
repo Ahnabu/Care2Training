@@ -1,6 +1,5 @@
-import { care2AssetUrl } from "@/lib/care2training-api";
+import { CARE2_API_BASE, care2AssetUrl } from "@/lib/care2training-api";
 
-const ADMIN_API_BASE = "https://admin.care2training.com/api";
 const FETCH_REVALIDATE_SECONDS = 60 * 30;
 
 export type BlogCategory = Readonly<{
@@ -99,7 +98,7 @@ export type PaginatedBlogsResponse = Readonly<{
 
 async function fetchBlogPosts(page = 1) {
   const perPage = 6;
-  const url = new URL(`${ADMIN_API_BASE}/blogs`);
+  const url = new URL(`${CARE2_API_BASE}/blogs`);
   url.searchParams.set("per_page", String(perPage));
   url.searchParams.set("page", String(page));
 

@@ -1,6 +1,9 @@
 import { defaultLocale, locales, type AppLocale } from "@/i18n/routing";
 
-export const CARE2_ADMIN_ORIGIN = "https://admin.care2training.com";
+const DEFAULT_CARE2_ADMIN_ORIGIN = "https://admin.care2training.com";
+
+export const CARE2_ADMIN_ORIGIN =
+  process.env.NEXT_PUBLIC_CARE2_ADMIN_ORIGIN?.trim() || DEFAULT_CARE2_ADMIN_ORIGIN;
 export const CARE2_API_BASE = `${CARE2_ADMIN_ORIGIN}/api`;
 
 const FETCH_REVALIDATE_SECONDS = 3600;
@@ -59,8 +62,13 @@ export function toApiLang(locale: string): AppLocale {
   return (locales as readonly string[]).includes(locale) ? (locale as AppLocale) : defaultLocale;
 }
 
-export async function fetchCountryList(): Promise<CountryListItem[]> {
-  const res = await fetch(`${CARE2_API_BASE}/get-countries`, {
+export async function fetchCountryList(locale?: string): Promise<CountryListItem[]> {
+  const lang = locale ? toApiLang(locale) : undefined;
+  const url = lang
+    ? `${CARE2_API_BASE}/get-countries?lang=${encodeURIComponent(lang)}`
+    : `${CARE2_API_BASE}/get-countries`;
+
+  const res = await fetch(url, {
     next: { revalidate: FETCH_REVALIDATE_SECONDS },
     headers: { Accept: "application/json" },
   });
@@ -72,15 +80,29 @@ export async function fetchCountryList(): Promise<CountryListItem[]> {
 
 export async function fetchCountryDetail(apiSlug: string, locale: string): Promise<CountryDetail | null> {
   const lang = toApiLang(locale);
-  const url = `${CARE2_API_BASE}/country/${encodeURIComponent(apiSlug)}?lang=${encodeURIComponent(lang)}`;
-  const res = await fetch(url, {
-    next: { revalidate: FETCH_REVALIDATE_SECONDS },
-    headers: { Accept: "application/json" },
-  });
-  if (!res.ok) return null;
-  const json: { status?: boolean; data?: CountryDetail } = await res.json();
-  if (!json.status || !json.data) return null;
-  return json.data;
+  const primaryUrl = `${CARE2_API_BASE}/country/${encodeURIComponent(apiSlug)}?lang=${encodeURIComponent(lang)}`;
+
+  const tryFetch = async (url: string) => {
+    const res = await fetch(url, {
+      next: { revalidate: FETCH_REVALIDATE_SECONDS },
+      headers: { Accept: "application/json" },
+    });
+    if (!res.ok) return null;
+    const json: { status?: boolean; data?: CountryDetail } = await res.json();
+    if (!json.status || !json.data) return null;
+    return json.data;
+  };
+
+  const primary = await tryFetch(primaryUrl);
+  if (primary) return primary;
+
+  // Fallback for deployments where non-default locale payloads are temporarily unavailable.
+  if (lang !== defaultLocale) {
+    const fallbackUrl = `${CARE2_API_BASE}/country/${encodeURIComponent(apiSlug)}?lang=${encodeURIComponent(defaultLocale)}`;
+    return tryFetch(fallbackUrl);
+  }
+
+  return null;
 }
 
 export async function fetchDestinationRouteSlugs(): Promise<string[]> {

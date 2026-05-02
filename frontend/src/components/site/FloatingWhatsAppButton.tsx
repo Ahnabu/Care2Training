@@ -1,4 +1,4 @@
-const whatsappUrl = "https://wa.me/8801842497766";
+const whatsappUrl = process.env.NEXT_PUBLIC_WHATSAPP_URL?.trim() || "https://wa.me/8801842497766";
 
 export function FloatingWhatsAppButton() {
   return (

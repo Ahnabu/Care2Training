@@ -7,13 +7,66 @@ import {
 import { LocaleLink } from "@/components/i18n/LocaleLink";
 import type { ServiceData } from "@/content/services";
 
+const UI_TEXT = {
+  en: {
+    home: "Home",
+    services: "Services",
+    ourService: "Our Service",
+    bookAppointment: "Book appointment",
+    talkToExpert: "Talk to an expert",
+    overview: "Overview",
+    keyBenefits: "Key Benefits",
+    ourProcess: "Our Process",
+    step: "Step",
+    whyChooseUs: "Why Choose Us",
+    needHelp: "Need help?",
+    getFreeConsultation: "Get free consultation",
+    speakWithExperts: "Speak with our expert advisors about",
+    otherServices: "Other Services",
+    viewAllServices: "View all services",
+    exploreOtherServices: "Explore Other Services",
+    readyToMoveForward: "Ready to move forward?",
+    getExpertAdvice: "Get expert advice for your next step abroad",
+    ctaBody: "Start with a short consultation, then choose a clear path for applications, visas, and beyond.",
+    exploreServices: "Explore services",
+  },
+  bg: {
+    home: "Начало",
+    services: "Услуги",
+    ourService: "Нашата услуга",
+    bookAppointment: "Запазване на час",
+    talkToExpert: "Говорете с експерт",
+    overview: "Преглед",
+    keyBenefits: "Ключови предимства",
+    ourProcess: "Нашият процес",
+    step: "Стъпка",
+    whyChooseUs: "Защо да изберете нас",
+    needHelp: "Нужда от помощ?",
+    getFreeConsultation: "Получете безплатна консултация",
+    speakWithExperts: "Говорете с нашите експертни консултанти за",
+    otherServices: "Други услуги",
+    viewAllServices: "Вижте всички услуги",
+    exploreOtherServices: "Разгледайте други услуги",
+    readyToMoveForward: "Готови ли сте за следващата стъпка?",
+    getExpertAdvice: "Получете експертен съвет за следващата си стъпка в чужбина",
+    ctaBody: "Започнете с кратка консултация, след това изберете ясен път за кандидатстване, визи и още.",
+    exploreServices: "Разгледайте услугите",
+  },
+} as const;
+
 /* ─────────────────────────────────────────────────────────────── */
 /*  Service Detail Page – Premium Redesign                        */
 /* ─────────────────────────────────────────────────────────────── */
 export function ServiceDetailContent({
   service,
-}: Readonly<{ service: ServiceData }>) {
+  locale,
+  services,
+}: Readonly<{ service: ServiceData; locale?: string; services?: ServiceData[] }>) {
   const Icon = service.icon;
+  const ui = locale === "bg" ? UI_TEXT.bg : UI_TEXT.en;
+  const otherServices = (services ?? [])
+    .filter((s) => s.slug !== service.slug)
+    .map((s) => ({ slug: s.slug, label: s.title, emoji: s.emoji }));
 
   return (
     <main className="mx-auto w-full max-w-[1360px] px-5 md:px-10 lg:px-12 py-10 md:py-14">
@@ -31,9 +84,9 @@ export function ServiceDetailContent({
           <div className="grid gap-5">
             {/* Breadcrumb */}
             <nav className="flex items-center gap-1.5 text-[0.78rem] font-medium text-white/60" aria-label="Breadcrumb">
-              <LocaleLink href="/" className="transition-colors hover:text-white/90">Home</LocaleLink>
+              <LocaleLink href="/" className="transition-colors hover:text-white/90">{ui.home}</LocaleLink>
               <span className="text-white/30">/</span>
-              <LocaleLink href="/services" className="transition-colors hover:text-white/90">Services</LocaleLink>
+              <LocaleLink href="/services" className="transition-colors hover:text-white/90">{ui.services}</LocaleLink>
               <span className="text-white/30">/</span>
               <span className="text-white/90">{service.title}</span>
             </nav>
@@ -44,7 +97,7 @@ export function ServiceDetailContent({
                 <Icon className="size-6 text-primary" aria-hidden />
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/15 px-3 py-1 text-[0.75rem] font-bold uppercase tracking-widest text-primary ring-1 ring-primary/25">
-                Our Service
+                {ui.ourService}
               </span>
             </div>
 
@@ -63,13 +116,13 @@ export function ServiceDetailContent({
                 href="/book-appointment"
                 className="inline-flex items-center gap-2 rounded-full clay-button px-6 py-3 text-[0.88rem] font-montserrat font-bold text-white shadow-xl transition-transform duration-200 hover:brightness-110 active:scale-[0.97]"
               >
-                Book appointment <ArrowRight className="size-4" />
+                {ui.bookAppointment} <ArrowRight className="size-4" />
               </LocaleLink>
               <LocaleLink
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-[0.88rem] font-semibold text-white/90 backdrop-blur-md transition-colors hover:bg-white/10 hover:text-white"
               >
-                <Phone className="size-4" /> Talk to an expert
+                <Phone className="size-4" /> {ui.talkToExpert}
               </LocaleLink>
             </div>
           </div>
@@ -105,15 +158,16 @@ export function ServiceDetailContent({
 
           {/* Overview */}
           <section>
-            <SectionLabel>Overview</SectionLabel>
+            <SectionLabel>{service.overviewTitle || ui.overview}</SectionLabel>
             <p className="mt-4 text-[1.05rem] leading-[1.75] text-muted-foreground">
               {service.overview}
             </p>
           </section>
 
           {/* Key Benefits */}
+          {service.benefits.length > 0 && (
           <section>
-            <SectionLabel>Key Benefits</SectionLabel>
+            <SectionLabel>{ui.keyBenefits}</SectionLabel>
             <div className="mt-5 grid gap-3">
               {service.benefits.map((b, i) => (
                 <div
@@ -128,11 +182,12 @@ export function ServiceDetailContent({
               ))}
             </div>
           </section>
+          )}
 
           {/* Our Process */}
           {service.process.length > 0 && (
             <section>
-              <SectionLabel>Our Process</SectionLabel>
+              <SectionLabel>{ui.ourProcess}</SectionLabel>
               <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {service.process.map((step, i) => (
                   <article
@@ -148,7 +203,7 @@ export function ServiceDetailContent({
                           {i + 1}
                         </span>
                         <span className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-muted-foreground">
-                          Step {i + 1}
+                          {ui.step} {i + 1}
                         </span>
                       </div>
                       <h3 className="text-[1.05rem] font-bold tracking-[-0.02em] text-foreground">
@@ -166,7 +221,7 @@ export function ServiceDetailContent({
 
           {/* Why Choose Us */}
           <section>
-            <SectionLabel>Why Choose Us</SectionLabel>
+            <SectionLabel>{service.whyTitle || ui.whyChooseUs}</SectionLabel>
             <div className="mt-5 rounded-2xl border border-border/60 bg-gradient-to-br from-primary/[0.04] via-card/80 to-card/60 p-6 shadow-sm dark:from-primary/[0.06]">
               <p className="text-[1.02rem] leading-[1.75] text-foreground/90">
                 {service.whyChooseUs}
@@ -185,18 +240,18 @@ export function ServiceDetailContent({
 
             {/* Quick contact card */}
             <div className="rounded-[1.5rem] border border-border/60 bg-card/70 p-5 shadow-sm backdrop-blur-md dark:bg-card/30">
-              <p className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-muted-foreground">Need help?</p>
+              <p className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-muted-foreground">{ui.needHelp}</p>
               <h3 className="mt-2 font-display text-lg font-bold tracking-[-0.02em] text-foreground">
-                Get free consultation
+                {ui.getFreeConsultation}
               </h3>
               <p className="mt-2 text-[0.88rem] leading-relaxed text-muted-foreground">
-                Speak with our expert advisors about {service.title.toLowerCase()}.
+                {ui.speakWithExperts} {service.title.toLowerCase()}.
               </p>
               <LocaleLink
                 href="/book-appointment"
                 className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl clay-button px-5 py-2.5 text-[0.88rem] font-montserrat font-bold text-white transition-transform active:scale-[0.97]"
               >
-                Book appointment <ArrowRight className="size-4" />
+                {ui.bookAppointment} <ArrowRight className="size-4" />
               </LocaleLink>
               <div className="mt-3 grid gap-1.5 text-[0.82rem] text-muted-foreground">
                 <a href="tel:+8801842497766" className="flex items-center gap-1.5 hover:text-primary transition-colors">
@@ -211,16 +266,16 @@ export function ServiceDetailContent({
             {/* Other services card */}
             <div className="rounded-[1.5rem] border border-border/60 bg-card/70 p-5 shadow-sm backdrop-blur-md dark:bg-card/30">
               <p className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-muted-foreground">
-                Other Services
+                {ui.otherServices}
               </p>
               <div className="mt-3 grid gap-1">
-                <OtherServicesLinks currentSlug={service.slug} />
+                <OtherServicesLinks currentSlug={service.slug} items={otherServices} />
               </div>
               <LocaleLink
                 href="/services"
                 className="mt-3 inline-flex items-center gap-1 text-[0.84rem] font-semibold text-primary hover:underline"
               >
-                View all services <ArrowRight className="size-3.5" />
+                {ui.viewAllServices} <ArrowRight className="size-3.5" />
               </LocaleLink>
             </div>
           </div>
@@ -229,9 +284,9 @@ export function ServiceDetailContent({
 
       {/* ── Mobile other services ──────────────────────── */}
       <section className="mt-10 lg:hidden">
-        <SectionLabel>Explore Other Services</SectionLabel>
+        <SectionLabel>{ui.exploreOtherServices}</SectionLabel>
         <div className="mt-4 flex flex-wrap gap-2.5">
-          <OtherServicesLinksPills currentSlug={service.slug} />
+          <OtherServicesLinksPills currentSlug={service.slug} items={otherServices} />
         </div>
       </section>
 
@@ -242,12 +297,12 @@ export function ServiceDetailContent({
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/12 via-primary/4 to-transparent" aria-hidden />
           <div className="relative z-10 grid gap-5 md:grid-cols-[1.2fr_0.8fr] md:items-center">
             <div className="grid gap-2">
-              <p className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-muted-foreground">Ready to move forward?</p>
+              <p className="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-muted-foreground">{ui.readyToMoveForward}</p>
               <h2 className="font-display text-2xl font-bold tracking-[-0.04em] md:text-3xl">
-                Get expert advice for your next step abroad
+                {ui.getExpertAdvice}
               </h2>
               <p className="text-[0.95rem] text-muted-foreground leading-relaxed">
-                Start with a short consultation, then choose a clear path for applications, visas, and beyond.
+                {ui.ctaBody}
               </p>
             </div>
             <div className="flex flex-col gap-2.5 sm:flex-row sm:justify-end shrink-0">
@@ -255,13 +310,13 @@ export function ServiceDetailContent({
                 href="/book-appointment"
                 className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full clay-button px-6 font-montserrat font-bold text-white transition-transform active:scale-95 duration-200"
               >
-                Book appointment
+                {ui.bookAppointment}
               </LocaleLink>
               <LocaleLink
                 href="/services"
                 className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full border border-border bg-background px-6 font-montserrat font-bold text-foreground hover:border-primary hover:text-primary transition-colors"
               >
-                Explore services
+                {ui.exploreServices}
               </LocaleLink>
             </div>
           </div>
@@ -286,18 +341,10 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 /** Sidebar links – compact rows */
-function OtherServicesLinks({ currentSlug }: { currentSlug: string }) {
-  const all = [
-    { slug: "admission-guidance", label: "Admission Guidance", emoji: "🎓" },
-    { slug: "visa-support", label: "Visa Support", emoji: "🛂" },
-    { slug: "career-pathway", label: "Career Counseling", emoji: "💼" },
-    { slug: "scholarship-assistance", label: "Scholarship Assistance", emoji: "🏅" },
-    { slug: "job-placement", label: "Job Placement", emoji: "🤝" },
-    { slug: "language-coaching", label: "Language Coaching", emoji: "🗣️" },
-  ];
+function OtherServicesLinks({ currentSlug, items }: { currentSlug: string; items: { slug: string; label: string; emoji: string }[] }) {
   return (
     <>
-      {all
+      {items
         .filter((s) => s.slug !== currentSlug)
         .map((s) => (
           <LocaleLink
@@ -315,18 +362,10 @@ function OtherServicesLinks({ currentSlug }: { currentSlug: string }) {
 }
 
 /** Mobile – pill-style links */
-function OtherServicesLinksPills({ currentSlug }: { currentSlug: string }) {
-  const all = [
-    { slug: "admission-guidance", label: "Admission Guidance", emoji: "🎓" },
-    { slug: "visa-support", label: "Visa Support", emoji: "🛂" },
-    { slug: "career-pathway", label: "Career Counseling", emoji: "💼" },
-    { slug: "scholarship-assistance", label: "Scholarship Assistance", emoji: "🏅" },
-    { slug: "job-placement", label: "Job Placement", emoji: "🤝" },
-    { slug: "language-coaching", label: "Language Coaching", emoji: "🗣️" },
-  ];
+function OtherServicesLinksPills({ currentSlug, items }: { currentSlug: string; items: { slug: string; label: string; emoji: string }[] }) {
   return (
     <>
-      {all
+      {items
         .filter((s) => s.slug !== currentSlug)
         .map((s) => (
           <LocaleLink

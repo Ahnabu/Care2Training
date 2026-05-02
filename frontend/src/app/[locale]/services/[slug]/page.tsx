@@ -1,10 +1,13 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { SERVICES, getServiceBySlug } from "@/content/services";
+import { SERVICES } from "@/content/services";
 import { ServiceDetailContent } from "@/components/services/ServiceDetailContent";
 import { locales } from "@/i18n/routing";
+import { fetchServiceBySlug, fetchServices } from "@/lib/servicesApi";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
+
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -13,8 +16,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const svc = getServiceBySlug(slug);
+  const { locale, slug } = await params;
+  const svc = await fetchServiceBySlug(slug, locale);
   if (!svc) return { title: "Service | Care2 Training" };
   return {
     title: svc.metaTitle,
@@ -23,8 +26,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
-  const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const { locale, slug } = await params;
+  const service = await fetchServiceBySlug(slug, locale);
+  const services = await fetchServices(locale);
   if (!service) notFound();
-  return <ServiceDetailContent service={service} />;
+  return <ServiceDetailContent service={service} locale={locale} services={services} />;
 }

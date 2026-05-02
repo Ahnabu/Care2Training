@@ -1,4 +1,9 @@
-import DestinationsPage from "../../study-destinations/page";
+import { StudyDestinationsListingPage } from "@/components/study-destinations/StudyDestinationsListingPage";
 
-export default DestinationsPage;
+type Props = Readonly<{ params: Promise<{ locale: string }> }>;
+
+export default async function LocaleStudyDestinationsPage({ params }: Props) {
+	const { locale } = await params;
+	return <StudyDestinationsListingPage locale={locale} />;
+}
 

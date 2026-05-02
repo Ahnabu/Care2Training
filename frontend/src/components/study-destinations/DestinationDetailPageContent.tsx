@@ -26,7 +26,13 @@ export async function DestinationDetailPageContent({
 
   const title = contents.hero_title?.trim() || country.name;
   const subtitle = contents.hero_subtitle?.trim() || "";
-  const pageHtml = normalizeStudyDestinationHtml(contents.page_description ?? "");
+  let pageHtml = "";
+  try {
+    pageHtml = normalizeStudyDestinationHtml(contents.page_description ?? "");
+  } catch {
+    // Keep the page available even if a specific CMS block has invalid markup.
+    pageHtml = contents.page_description ?? "";
+  }
 
   return (
     <main className="mx-auto w-full max-w-[1360px] px-6 md:px-10 lg:px-12 py-12 md:py-16">

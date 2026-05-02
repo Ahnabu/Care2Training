@@ -7,6 +7,8 @@ export type ServiceData = {
   icon: LucideIcon;
   emoji: string;
   title: string;
+  overviewTitle?: string;
+  whyTitle?: string;
   metaTitle: string;
   metaDescription: string;
   heroDescription: string;

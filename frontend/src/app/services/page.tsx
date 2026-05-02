@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { ServicesBentoGrid } from "@/components/sections/ServicesBentoGrid";
@@ -7,17 +8,22 @@ import { CTABand } from "@/components/sections/CTABand";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { OfficesMini } from "@/components/sections/OfficesMini";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { fetchServices } from "@/lib/servicesApi";
 
 export const metadata: Metadata = {
   title: "Services | Care2 Training",
   description: "Explore our services for admissions, visas, and study abroad success.",
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const tNav = await getTranslations("nav");
+  const tPage = await getTranslations("studyDestinationsPage");
+  const services = await fetchServices("en");
+
   return (
     <main className="mx-auto w-full max-w-[1360px] px-6 md:px-10 lg:px-12 py-12 md:py-16">
       <PageHeader
-        title="Services"
+        title={tNav("services")}
         description="Clear guidance at every step - from choosing a destination to preparing your application."
       />
 
@@ -26,7 +32,12 @@ export default function ServicesPage() {
         <OfficesMini className="lg:mt-1" />
       </div>
 
-      <ServicesBentoGrid showHeading={false} className="mt-10 py-0 md:py-0" />
+      <ServicesBentoGrid
+        showHeading={false}
+        className="mt-10 py-0 md:py-0"
+        services={services}
+        labels={{ viewDetails: tPage("viewDetails") }}
+      />
 
       <ProcessSteps />
       <TestimonialsSection />

@@ -9,10 +9,10 @@ import { LocaleLink } from "@/components/i18n/LocaleLink";
 import { getTranslations } from "next-intl/server";
 import { apiSlugToRouteSlug, fetchCountryList } from "@/lib/care2training-api";
 
-export async function StudyDestinationsListingPage() {
+export async function StudyDestinationsListingPage({ locale }: Readonly<{ locale: string }>) {
   const tNav = await getTranslations("nav");
   const tPage = await getTranslations("studyDestinationsPage");
-  const destinations = await fetchCountryList();
+  const destinations = await fetchCountryList(locale);
 
   const sorted = [...destinations].sort((a, b) => Number(a.order) - Number(b.order));
 

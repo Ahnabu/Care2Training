@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { CARE2_API_BASE } from "@/lib/care2training-api";
 import { cn } from "@/lib/utils";
 
 const defaultStudyDestinations = [
@@ -55,7 +56,7 @@ export function BookAppointmentForm() {
     let mounted = true;
     (async () => {
       try {
-        const res = await fetch("https://admin.care2training.com/api/get-countries");
+        const res = await fetch(`${CARE2_API_BASE}/get-countries`);
         if (!res.ok) return;
         const data = await res.json();
         if (!mounted) return;

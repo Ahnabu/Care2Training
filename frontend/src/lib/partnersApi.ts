@@ -1,3 +1,5 @@
+import { CARE2_ADMIN_ORIGIN, CARE2_API_BASE, toApiLang } from "@/lib/care2training-api";
+
 export type UniversityPartner = Readonly<{
   id: number;
   country_id: number | null;
@@ -11,18 +13,15 @@ type HomePageResponse = Readonly<{
   partners?: UniversityPartner[];
 }>;
 
-const ADMIN_API_BASE = "https://admin.care2training.com/api";
-const ADMIN_ASSET_BASE = "https://admin.care2training.com";
-
 export function partnerImageUrl(imagePath: string | null) {
   if (!imagePath) return "/brand/logo-mark.svg";
   if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) return imagePath;
-  return `${ADMIN_ASSET_BASE}/${imagePath.replace(/^\/+/, "")}`;
+  return `${CARE2_ADMIN_ORIGIN}/${imagePath.replace(/^\/+/, "")}`;
 }
 
 export async function fetchUniversityPartners(locale: string) {
-  const lang = locale === "bn" ? "bn" : "en";
-  const res = await fetch(`${ADMIN_API_BASE}/home-page?lang=${encodeURIComponent(lang)}`, {
+  const lang = toApiLang(locale);
+  const res = await fetch(`${CARE2_API_BASE}/home-page?lang=${encodeURIComponent(lang)}`, {
     next: { revalidate: 60 * 60 },
   });
 

@@ -3,15 +3,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type React from "react";
+import { defaultLocale, locales, type AppLocale } from "@/i18n/routing";
 
 function getLocaleFromPathname(pathname: string | null | undefined) {
   const first = (pathname || "/").split("/")[1];
-  return first === "bn" ? "bn" : "en";
+  return (locales as readonly string[]).includes(first) ? (first as AppLocale) : defaultLocale;
 }
 
-function withLocalePrefix(href: string, locale: "en" | "bn") {
+function withLocalePrefix(href: string, locale: AppLocale) {
+  const localeGroup = locales.join("|");
+  const localePrefixPattern = new RegExp(`^\\/(${localeGroup})(\\/|$)`);
+
   // Already prefixed
-  if (/^\/(en|bn)(\/|$)/.test(href)) return href;
+  if (localePrefixPattern.test(href)) return href;
   if (href === "/") return `/${locale}`;
   if (!href.startsWith("/")) href = `/${href}`;
   return `/${locale}${href}`;
